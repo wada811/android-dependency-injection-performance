@@ -2,10 +2,9 @@ package com.sloydev.dependencyinjectionperformance.custom
 
 import com.sloydev.dependencyinjectionperformance.FibonacciJava
 
-
 val customJavaModule = module {
-    factory { FibonacciJava.Fib1() }
-    factory { FibonacciJava.Fib2() }
+    single { FibonacciJava.Fib1() }
+    single { FibonacciJava.Fib2() }
     factory { FibonacciJava.Fib3(get(), get()) }
     factory { FibonacciJava.Fib4(get(), get()) }
     factory { FibonacciJava.Fib5(get(), get()) }
@@ -454,5 +453,4 @@ val customJavaModule = module {
     factory { FibonacciJava.Fib448(get(), get()) }
     factory { FibonacciJava.Fib449(get(), get()) }
     factory { FibonacciJava.Fib450(get(), get()) }
-
 }

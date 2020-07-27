@@ -20,7 +20,7 @@ enum class Variant {
     KOTLIN, JAVA
 }
 
-fun Milliseconds?.format() = String.format(Locale.ENGLISH, "%.2f ms", this)
+fun Milliseconds?.format() = String.format(Locale.ENGLISH, "%.3f ms", this)
 
 fun measureTime(block: () -> Unit): Milliseconds = measureNanoTime(block) / 1000000.0
 

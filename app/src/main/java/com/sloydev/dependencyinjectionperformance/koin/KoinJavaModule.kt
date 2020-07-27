@@ -7,8 +7,8 @@ import org.koin.dsl.module
  * Generated with https://gist.github.com/Sloy/12affca1e49ba052053ab4c8bfc5bcb4
  */
 val koinJavaModule = module {
-    factory { FibonacciJava.Fib1() }
-    factory { FibonacciJava.Fib2() }
+    single { FibonacciJava.Fib1() }
+    single { FibonacciJava.Fib2() }
     factory { FibonacciJava.Fib3(get(), get()) }
     factory { FibonacciJava.Fib4(get(), get()) }
     factory { FibonacciJava.Fib5(get(), get()) }

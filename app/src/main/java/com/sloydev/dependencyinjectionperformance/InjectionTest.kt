@@ -1,6 +1,5 @@
 package com.sloydev.dependencyinjectionperformance
 
-import android.os.Build
 import com.sloydev.dependencyinjectionperformance.custom.DIContainer
 import com.sloydev.dependencyinjectionperformance.custom.customJavaModule
 import com.sloydev.dependencyinjectionperformance.custom.customKotlinModule
@@ -10,11 +9,12 @@ import com.sloydev.dependencyinjectionperformance.dagger2.JavaDaggerComponent
 import com.sloydev.dependencyinjectionperformance.dagger2.KotlinDaggerComponent
 import com.sloydev.dependencyinjectionperformance.katana.katanaJavaModule
 import com.sloydev.dependencyinjectionperformance.katana.katanaKotlinModule
+import com.sloydev.dependencyinjectionperformance.kodein.kodeinJavaModule
+import com.sloydev.dependencyinjectionperformance.kodein.kodeinKotlinModule
 import com.sloydev.dependencyinjectionperformance.koin.koinJavaModule
 import com.sloydev.dependencyinjectionperformance.koin.koinKotlinModule
-import org.kodein.di.Kodein
-import org.kodein.di.direct
-import org.kodein.di.erased.instance
+import org.kodein.di.DI
+import org.kodein.di.instance
 import org.koin.core.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
@@ -23,7 +23,6 @@ import org.rewedigital.katana.Component
 import org.rewedigital.katana.Katana
 import org.rewedigital.katana.android.environment.AndroidEnvironmentContext
 import org.rewedigital.katana.android.environment.AndroidEnvironmentContext.Profile.SPEED
-import org.rewedigital.katana.createComponent
 import javax.inject.Inject
 
 class InjectionTest : KoinComponent {
@@ -41,11 +40,8 @@ class InjectionTest : KoinComponent {
             customTest(),
             daggerTest()
         )
-        reportMarkdown(results)
         return results
     }
-
-
 
     private fun runTest(
         setup: () -> Unit,
@@ -69,7 +65,7 @@ class InjectionTest : KoinComponent {
                         modules(koinKotlinModule)
                     }
                 },
-                test = { get<Fib8>() },
+                test = { get<FibonacciKotlin.Fib8>() },
                 teardown = { stopKoin() }
             ),
             Variant.JAVA to runTest(
@@ -86,15 +82,15 @@ class InjectionTest : KoinComponent {
 
     private fun kodeinTest(): LibraryResult {
         log("Running Kodein...")
-        lateinit var kodein: Kodein
+        lateinit var kodein: DI
         return LibraryResult("Kodein", mapOf(
             Variant.KOTLIN to runTest(
-                setup = { kodein = Kodein { import(kodeinKotlinModule) } },
-                test = { kodein.direct.instance<Fib8>() }
+                setup = { kodein = DI { import(kodeinKotlinModule) } },
+                test = { kodein.instance<FibonacciKotlin.Fib8>() }
             ),
             Variant.JAVA to runTest(
-                setup = { kodein = Kodein { import(kodeinKotlinModule) } },
-                test = { kodein.direct.instance<Fib8>() }
+                setup = { kodein = DI { import(kodeinJavaModule) } },
+                test = { kodein.instance<FibonacciKotlin.Fib8>() }
             )
         ))
     }
@@ -105,11 +101,11 @@ class InjectionTest : KoinComponent {
         lateinit var component: Component
         return LibraryResult("Katana", mapOf(
             Variant.KOTLIN to runTest(
-                setup = { component = createComponent(modules = listOf(katanaKotlinModule)) },
-                test = { component.injectNow<Fib8>() }
+                setup = { component = Component(listOf(katanaKotlinModule)) },
+                test = { component.injectNow<FibonacciKotlin.Fib8>() }
             ),
             Variant.JAVA to runTest(
-                setup = { component = createComponent(modules = listOf(katanaJavaModule)) },
+                setup = { component = Component(listOf(katanaJavaModule)) },
                 test = { component.injectNow<FibonacciJava.Fib8>() }
             )
         ))
@@ -120,7 +116,7 @@ class InjectionTest : KoinComponent {
         return LibraryResult("Custom", mapOf(
             Variant.KOTLIN to runTest(
                 setup = { DIContainer.loadModule(customKotlinModule) },
-                test = { DIContainer.get<Fib8>() },
+                test = { DIContainer.get<FibonacciKotlin.Fib8>() },
                 teardown = { DIContainer.unloadModules() }
             ),
             Variant.JAVA to runTest(
@@ -149,7 +145,7 @@ class InjectionTest : KoinComponent {
 
     class KotlinDaggerTest {
         @Inject
-        lateinit var daggerFib8: Fib8
+        lateinit var daggerFib8: FibonacciKotlin.Fib8
     }
 
     class JavaDaggerTest {

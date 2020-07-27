@@ -1,460 +1,487 @@
 package com.sloydev.dependencyinjectionperformance.katana
 
-import com.sloydev.dependencyinjectionperformance.*
-import org.rewedigital.katana.bind
-import org.rewedigital.katana.createModule
-import org.rewedigital.katana.factory
-import org.rewedigital.katana.get
+import com.sloydev.dependencyinjectionperformance.FibonacciKotlin
+import org.rewedigital.katana.Module
+import org.rewedigital.katana.ModuleBindingContext
+import org.rewedigital.katana.dsl.factory
+import org.rewedigital.katana.dsl.get
+import org.rewedigital.katana.dsl.singleton
 
-val katanaKotlinModule = createModule("katanaKotlinModule") {
-    bind<Fib1> { factory { Fib1() } }
-    bind<Fib2> { factory { Fib2() } }
-    bind<Fib3> { factory { Fib3(get(), get()) } }
-    bind<Fib4> { factory { Fib4(get(), get()) } }
-    bind<Fib5> { factory { Fib5(get(), get()) } }
-    bind<Fib6> { factory { Fib6(get(), get()) } }
-    bind<Fib7> { factory { Fib7(get(), get()) } }
-    bind<Fib8> { factory { Fib8(get(), get()) } }
-    bind<Fib9> { factory { Fib9(get(), get()) } }
-    bind<Fib10> { factory { Fib10(get(), get()) } }
-    bind<Fib11> { factory { Fib11(get(), get()) } }
-    bind<Fib12> { factory { Fib12(get(), get()) } }
-    bind<Fib13> { factory { Fib13(get(), get()) } }
-    bind<Fib14> { factory { Fib14(get(), get()) } }
-    bind<Fib15> { factory { Fib15(get(), get()) } }
-    bind<Fib16> { factory { Fib16(get(), get()) } }
-    bind<Fib17> { factory { Fib17(get(), get()) } }
-    bind<Fib18> { factory { Fib18(get(), get()) } }
-    bind<Fib19> { factory { Fib19(get(), get()) } }
-    bind<Fib20> { factory { Fib20(get(), get()) } }
-    bind<Fib21> { factory { Fib21(get(), get()) } }
-    bind<Fib22> { factory { Fib22(get(), get()) } }
-    bind<Fib23> { factory { Fib23(get(), get()) } }
-    bind<Fib24> { factory { Fib24(get(), get()) } }
-    bind<Fib25> { factory { Fib25(get(), get()) } }
-    bind<Fib26> { factory { Fib26(get(), get()) } }
-    bind<Fib27> { factory { Fib27(get(), get()) } }
-    bind<Fib28> { factory { Fib28(get(), get()) } }
-    bind<Fib29> { factory { Fib29(get(), get()) } }
-    bind<Fib30> { factory { Fib30(get(), get()) } }
-    bind<Fib31> { factory { Fib31(get(), get()) } }
-    bind<Fib32> { factory { Fib32(get(), get()) } }
-    bind<Fib33> { factory { Fib33(get(), get()) } }
-    bind<Fib34> { factory { Fib34(get(), get()) } }
-    bind<Fib35> { factory { Fib35(get(), get()) } }
-    bind<Fib36> { factory { Fib36(get(), get()) } }
-    bind<Fib37> { factory { Fib37(get(), get()) } }
-    bind<Fib38> { factory { Fib38(get(), get()) } }
-    bind<Fib39> { factory { Fib39(get(), get()) } }
-    bind<Fib40> { factory { Fib40(get(), get()) } }
-    bind<Fib41> { factory { Fib41(get(), get()) } }
-    bind<Fib42> { factory { Fib42(get(), get()) } }
-    bind<Fib43> { factory { Fib43(get(), get()) } }
-    bind<Fib44> { factory { Fib44(get(), get()) } }
-    bind<Fib45> { factory { Fib45(get(), get()) } }
-    bind<Fib46> { factory { Fib46(get(), get()) } }
-    bind<Fib47> { factory { Fib47(get(), get()) } }
-    bind<Fib48> { factory { Fib48(get(), get()) } }
-    bind<Fib49> { factory { Fib49(get(), get()) } }
-    bind<Fib50> { factory { Fib50(get(), get()) } }
-    bind<Fib51> { factory { Fib51(get(), get()) } }
-    bind<Fib52> { factory { Fib52(get(), get()) } }
-    bind<Fib53> { factory { Fib53(get(), get()) } }
-    bind<Fib54> { factory { Fib54(get(), get()) } }
-    bind<Fib55> { factory { Fib55(get(), get()) } }
-    bind<Fib56> { factory { Fib56(get(), get()) } }
-    bind<Fib57> { factory { Fib57(get(), get()) } }
-    bind<Fib58> { factory { Fib58(get(), get()) } }
-    bind<Fib59> { factory { Fib59(get(), get()) } }
-    bind<Fib60> { factory { Fib60(get(), get()) } }
-    bind<Fib61> { factory { Fib61(get(), get()) } }
-    bind<Fib62> { factory { Fib62(get(), get()) } }
-    bind<Fib63> { factory { Fib63(get(), get()) } }
-    bind<Fib64> { factory { Fib64(get(), get()) } }
-    bind<Fib65> { factory { Fib65(get(), get()) } }
-    bind<Fib66> { factory { Fib66(get(), get()) } }
-    bind<Fib67> { factory { Fib67(get(), get()) } }
-    bind<Fib68> { factory { Fib68(get(), get()) } }
-    bind<Fib69> { factory { Fib69(get(), get()) } }
-    bind<Fib70> { factory { Fib70(get(), get()) } }
-    bind<Fib71> { factory { Fib71(get(), get()) } }
-    bind<Fib72> { factory { Fib72(get(), get()) } }
-    bind<Fib73> { factory { Fib73(get(), get()) } }
-    bind<Fib74> { factory { Fib74(get(), get()) } }
-    bind<Fib75> { factory { Fib75(get(), get()) } }
-    bind<Fib76> { factory { Fib76(get(), get()) } }
-    bind<Fib77> { factory { Fib77(get(), get()) } }
-    bind<Fib78> { factory { Fib78(get(), get()) } }
-    bind<Fib79> { factory { Fib79(get(), get()) } }
-    bind<Fib80> { factory { Fib80(get(), get()) } }
-    bind<Fib81> { factory { Fib81(get(), get()) } }
-    bind<Fib82> { factory { Fib82(get(), get()) } }
-    bind<Fib83> { factory { Fib83(get(), get()) } }
-    bind<Fib84> { factory { Fib84(get(), get()) } }
-    bind<Fib85> { factory { Fib85(get(), get()) } }
-    bind<Fib86> { factory { Fib86(get(), get()) } }
-    bind<Fib87> { factory { Fib87(get(), get()) } }
-    bind<Fib88> { factory { Fib88(get(), get()) } }
-    bind<Fib89> { factory { Fib89(get(), get()) } }
-    bind<Fib90> { factory { Fib90(get(), get()) } }
-    bind<Fib91> { factory { Fib91(get(), get()) } }
-    bind<Fib92> { factory { Fib92(get(), get()) } }
-    bind<Fib93> { factory { Fib93(get(), get()) } }
-    bind<Fib94> { factory { Fib94(get(), get()) } }
-    bind<Fib95> { factory { Fib95(get(), get()) } }
-    bind<Fib96> { factory { Fib96(get(), get()) } }
-    bind<Fib97> { factory { Fib97(get(), get()) } }
-    bind<Fib98> { factory { Fib98(get(), get()) } }
-    bind<Fib99> { factory { Fib99(get(), get()) } }
-    bind<Fib100> { factory { Fib100(get(), get()) } }
-    bind<Fib101> { factory { Fib101(get(), get()) } }
-    bind<Fib102> { factory { Fib102(get(), get()) } }
-    bind<Fib103> { factory { Fib103(get(), get()) } }
-    bind<Fib104> { factory { Fib104(get(), get()) } }
-    bind<Fib105> { factory { Fib105(get(), get()) } }
-    bind<Fib106> { factory { Fib106(get(), get()) } }
-    bind<Fib107> { factory { Fib107(get(), get()) } }
-    bind<Fib108> { factory { Fib108(get(), get()) } }
-    bind<Fib109> { factory { Fib109(get(), get()) } }
-    bind<Fib110> { factory { Fib110(get(), get()) } }
-    bind<Fib111> { factory { Fib111(get(), get()) } }
-    bind<Fib112> { factory { Fib112(get(), get()) } }
-    bind<Fib113> { factory { Fib113(get(), get()) } }
-    bind<Fib114> { factory { Fib114(get(), get()) } }
-    bind<Fib115> { factory { Fib115(get(), get()) } }
-    bind<Fib116> { factory { Fib116(get(), get()) } }
-    bind<Fib117> { factory { Fib117(get(), get()) } }
-    bind<Fib118> { factory { Fib118(get(), get()) } }
-    bind<Fib119> { factory { Fib119(get(), get()) } }
-    bind<Fib120> { factory { Fib120(get(), get()) } }
-    bind<Fib121> { factory { Fib121(get(), get()) } }
-    bind<Fib122> { factory { Fib122(get(), get()) } }
-    bind<Fib123> { factory { Fib123(get(), get()) } }
-    bind<Fib124> { factory { Fib124(get(), get()) } }
-    bind<Fib125> { factory { Fib125(get(), get()) } }
-    bind<Fib126> { factory { Fib126(get(), get()) } }
-    bind<Fib127> { factory { Fib127(get(), get()) } }
-    bind<Fib128> { factory { Fib128(get(), get()) } }
-    bind<Fib129> { factory { Fib129(get(), get()) } }
-    bind<Fib130> { factory { Fib130(get(), get()) } }
-    bind<Fib131> { factory { Fib131(get(), get()) } }
-    bind<Fib132> { factory { Fib132(get(), get()) } }
-    bind<Fib133> { factory { Fib133(get(), get()) } }
-    bind<Fib134> { factory { Fib134(get(), get()) } }
-    bind<Fib135> { factory { Fib135(get(), get()) } }
-    bind<Fib136> { factory { Fib136(get(), get()) } }
-    bind<Fib137> { factory { Fib137(get(), get()) } }
-    bind<Fib138> { factory { Fib138(get(), get()) } }
-    bind<Fib139> { factory { Fib139(get(), get()) } }
-    bind<Fib140> { factory { Fib140(get(), get()) } }
-    bind<Fib141> { factory { Fib141(get(), get()) } }
-    bind<Fib142> { factory { Fib142(get(), get()) } }
-    bind<Fib143> { factory { Fib143(get(), get()) } }
-    bind<Fib144> { factory { Fib144(get(), get()) } }
-    bind<Fib145> { factory { Fib145(get(), get()) } }
-    bind<Fib146> { factory { Fib146(get(), get()) } }
-    bind<Fib147> { factory { Fib147(get(), get()) } }
-    bind<Fib148> { factory { Fib148(get(), get()) } }
-    bind<Fib149> { factory { Fib149(get(), get()) } }
-    bind<Fib150> { factory { Fib150(get(), get()) } }
-    bind<Fib151> { factory { Fib151(get(), get()) } }
-    bind<Fib152> { factory { Fib152(get(), get()) } }
-    bind<Fib153> { factory { Fib153(get(), get()) } }
-    bind<Fib154> { factory { Fib154(get(), get()) } }
-    bind<Fib155> { factory { Fib155(get(), get()) } }
-    bind<Fib156> { factory { Fib156(get(), get()) } }
-    bind<Fib157> { factory { Fib157(get(), get()) } }
-    bind<Fib158> { factory { Fib158(get(), get()) } }
-    bind<Fib159> { factory { Fib159(get(), get()) } }
-    bind<Fib160> { factory { Fib160(get(), get()) } }
-    bind<Fib161> { factory { Fib161(get(), get()) } }
-    bind<Fib162> { factory { Fib162(get(), get()) } }
-    bind<Fib163> { factory { Fib163(get(), get()) } }
-    bind<Fib164> { factory { Fib164(get(), get()) } }
-    bind<Fib165> { factory { Fib165(get(), get()) } }
-    bind<Fib166> { factory { Fib166(get(), get()) } }
-    bind<Fib167> { factory { Fib167(get(), get()) } }
-    bind<Fib168> { factory { Fib168(get(), get()) } }
-    bind<Fib169> { factory { Fib169(get(), get()) } }
-    bind<Fib170> { factory { Fib170(get(), get()) } }
-    bind<Fib171> { factory { Fib171(get(), get()) } }
-    bind<Fib172> { factory { Fib172(get(), get()) } }
-    bind<Fib173> { factory { Fib173(get(), get()) } }
-    bind<Fib174> { factory { Fib174(get(), get()) } }
-    bind<Fib175> { factory { Fib175(get(), get()) } }
-    bind<Fib176> { factory { Fib176(get(), get()) } }
-    bind<Fib177> { factory { Fib177(get(), get()) } }
-    bind<Fib178> { factory { Fib178(get(), get()) } }
-    bind<Fib179> { factory { Fib179(get(), get()) } }
-    bind<Fib180> { factory { Fib180(get(), get()) } }
-    bind<Fib181> { factory { Fib181(get(), get()) } }
-    bind<Fib182> { factory { Fib182(get(), get()) } }
-    bind<Fib183> { factory { Fib183(get(), get()) } }
-    bind<Fib184> { factory { Fib184(get(), get()) } }
-    bind<Fib185> { factory { Fib185(get(), get()) } }
-    bind<Fib186> { factory { Fib186(get(), get()) } }
-    bind<Fib187> { factory { Fib187(get(), get()) } }
-    bind<Fib188> { factory { Fib188(get(), get()) } }
-    bind<Fib189> { factory { Fib189(get(), get()) } }
-    bind<Fib190> { factory { Fib190(get(), get()) } }
-    bind<Fib191> { factory { Fib191(get(), get()) } }
-    bind<Fib192> { factory { Fib192(get(), get()) } }
-    bind<Fib193> { factory { Fib193(get(), get()) } }
-    bind<Fib194> { factory { Fib194(get(), get()) } }
-    bind<Fib195> { factory { Fib195(get(), get()) } }
-    bind<Fib196> { factory { Fib196(get(), get()) } }
-    bind<Fib197> { factory { Fib197(get(), get()) } }
-    bind<Fib198> { factory { Fib198(get(), get()) } }
-    bind<Fib199> { factory { Fib199(get(), get()) } }
-    bind<Fib200> { factory { Fib200(get(), get()) } }
-    bind<Fib201> { factory { Fib201(get(), get()) } }
-    bind<Fib202> { factory { Fib202(get(), get()) } }
-    bind<Fib203> { factory { Fib203(get(), get()) } }
-    bind<Fib204> { factory { Fib204(get(), get()) } }
-    bind<Fib205> { factory { Fib205(get(), get()) } }
-    bind<Fib206> { factory { Fib206(get(), get()) } }
-    bind<Fib207> { factory { Fib207(get(), get()) } }
-    bind<Fib208> { factory { Fib208(get(), get()) } }
-    bind<Fib209> { factory { Fib209(get(), get()) } }
-    bind<Fib210> { factory { Fib210(get(), get()) } }
-    bind<Fib211> { factory { Fib211(get(), get()) } }
-    bind<Fib212> { factory { Fib212(get(), get()) } }
-    bind<Fib213> { factory { Fib213(get(), get()) } }
-    bind<Fib214> { factory { Fib214(get(), get()) } }
-    bind<Fib215> { factory { Fib215(get(), get()) } }
-    bind<Fib216> { factory { Fib216(get(), get()) } }
-    bind<Fib217> { factory { Fib217(get(), get()) } }
-    bind<Fib218> { factory { Fib218(get(), get()) } }
-    bind<Fib219> { factory { Fib219(get(), get()) } }
-    bind<Fib220> { factory { Fib220(get(), get()) } }
-    bind<Fib221> { factory { Fib221(get(), get()) } }
-    bind<Fib222> { factory { Fib222(get(), get()) } }
-    bind<Fib223> { factory { Fib223(get(), get()) } }
-    bind<Fib224> { factory { Fib224(get(), get()) } }
-    bind<Fib225> { factory { Fib225(get(), get()) } }
-    bind<Fib226> { factory { Fib226(get(), get()) } }
-    bind<Fib227> { factory { Fib227(get(), get()) } }
-    bind<Fib228> { factory { Fib228(get(), get()) } }
-    bind<Fib229> { factory { Fib229(get(), get()) } }
-    bind<Fib230> { factory { Fib230(get(), get()) } }
-    bind<Fib231> { factory { Fib231(get(), get()) } }
-    bind<Fib232> { factory { Fib232(get(), get()) } }
-    bind<Fib233> { factory { Fib233(get(), get()) } }
-    bind<Fib234> { factory { Fib234(get(), get()) } }
-    bind<Fib235> { factory { Fib235(get(), get()) } }
-    bind<Fib236> { factory { Fib236(get(), get()) } }
-    bind<Fib237> { factory { Fib237(get(), get()) } }
-    bind<Fib238> { factory { Fib238(get(), get()) } }
-    bind<Fib239> { factory { Fib239(get(), get()) } }
-    bind<Fib240> { factory { Fib240(get(), get()) } }
-    bind<Fib241> { factory { Fib241(get(), get()) } }
-    bind<Fib242> { factory { Fib242(get(), get()) } }
-    bind<Fib243> { factory { Fib243(get(), get()) } }
-    bind<Fib244> { factory { Fib244(get(), get()) } }
-    bind<Fib245> { factory { Fib245(get(), get()) } }
-    bind<Fib246> { factory { Fib246(get(), get()) } }
-    bind<Fib247> { factory { Fib247(get(), get()) } }
-    bind<Fib248> { factory { Fib248(get(), get()) } }
-    bind<Fib249> { factory { Fib249(get(), get()) } }
-    bind<Fib250> { factory { Fib250(get(), get()) } }
-    bind<Fib251> { factory { Fib251(get(), get()) } }
-    bind<Fib252> { factory { Fib252(get(), get()) } }
-    bind<Fib253> { factory { Fib253(get(), get()) } }
-    bind<Fib254> { factory { Fib254(get(), get()) } }
-    bind<Fib255> { factory { Fib255(get(), get()) } }
-    bind<Fib256> { factory { Fib256(get(), get()) } }
-    bind<Fib257> { factory { Fib257(get(), get()) } }
-    bind<Fib258> { factory { Fib258(get(), get()) } }
-    bind<Fib259> { factory { Fib259(get(), get()) } }
-    bind<Fib260> { factory { Fib260(get(), get()) } }
-    bind<Fib261> { factory { Fib261(get(), get()) } }
-    bind<Fib262> { factory { Fib262(get(), get()) } }
-    bind<Fib263> { factory { Fib263(get(), get()) } }
-    bind<Fib264> { factory { Fib264(get(), get()) } }
-    bind<Fib265> { factory { Fib265(get(), get()) } }
-    bind<Fib266> { factory { Fib266(get(), get()) } }
-    bind<Fib267> { factory { Fib267(get(), get()) } }
-    bind<Fib268> { factory { Fib268(get(), get()) } }
-    bind<Fib269> { factory { Fib269(get(), get()) } }
-    bind<Fib270> { factory { Fib270(get(), get()) } }
-    bind<Fib271> { factory { Fib271(get(), get()) } }
-    bind<Fib272> { factory { Fib272(get(), get()) } }
-    bind<Fib273> { factory { Fib273(get(), get()) } }
-    bind<Fib274> { factory { Fib274(get(), get()) } }
-    bind<Fib275> { factory { Fib275(get(), get()) } }
-    bind<Fib276> { factory { Fib276(get(), get()) } }
-    bind<Fib277> { factory { Fib277(get(), get()) } }
-    bind<Fib278> { factory { Fib278(get(), get()) } }
-    bind<Fib279> { factory { Fib279(get(), get()) } }
-    bind<Fib280> { factory { Fib280(get(), get()) } }
-    bind<Fib281> { factory { Fib281(get(), get()) } }
-    bind<Fib282> { factory { Fib282(get(), get()) } }
-    bind<Fib283> { factory { Fib283(get(), get()) } }
-    bind<Fib284> { factory { Fib284(get(), get()) } }
-    bind<Fib285> { factory { Fib285(get(), get()) } }
-    bind<Fib286> { factory { Fib286(get(), get()) } }
-    bind<Fib287> { factory { Fib287(get(), get()) } }
-    bind<Fib288> { factory { Fib288(get(), get()) } }
-    bind<Fib289> { factory { Fib289(get(), get()) } }
-    bind<Fib290> { factory { Fib290(get(), get()) } }
-    bind<Fib291> { factory { Fib291(get(), get()) } }
-    bind<Fib292> { factory { Fib292(get(), get()) } }
-    bind<Fib293> { factory { Fib293(get(), get()) } }
-    bind<Fib294> { factory { Fib294(get(), get()) } }
-    bind<Fib295> { factory { Fib295(get(), get()) } }
-    bind<Fib296> { factory { Fib296(get(), get()) } }
-    bind<Fib297> { factory { Fib297(get(), get()) } }
-    bind<Fib298> { factory { Fib298(get(), get()) } }
-    bind<Fib299> { factory { Fib299(get(), get()) } }
-    bind<Fib300> { factory { Fib300(get(), get()) } }
-    bind<Fib301> { factory { Fib301(get(), get()) } }
-    bind<Fib302> { factory { Fib302(get(), get()) } }
-    bind<Fib303> { factory { Fib303(get(), get()) } }
-    bind<Fib304> { factory { Fib304(get(), get()) } }
-    bind<Fib305> { factory { Fib305(get(), get()) } }
-    bind<Fib306> { factory { Fib306(get(), get()) } }
-    bind<Fib307> { factory { Fib307(get(), get()) } }
-    bind<Fib308> { factory { Fib308(get(), get()) } }
-    bind<Fib309> { factory { Fib309(get(), get()) } }
-    bind<Fib310> { factory { Fib310(get(), get()) } }
-    bind<Fib311> { factory { Fib311(get(), get()) } }
-    bind<Fib312> { factory { Fib312(get(), get()) } }
-    bind<Fib313> { factory { Fib313(get(), get()) } }
-    bind<Fib314> { factory { Fib314(get(), get()) } }
-    bind<Fib315> { factory { Fib315(get(), get()) } }
-    bind<Fib316> { factory { Fib316(get(), get()) } }
-    bind<Fib317> { factory { Fib317(get(), get()) } }
-    bind<Fib318> { factory { Fib318(get(), get()) } }
-    bind<Fib319> { factory { Fib319(get(), get()) } }
-    bind<Fib320> { factory { Fib320(get(), get()) } }
-    bind<Fib321> { factory { Fib321(get(), get()) } }
-    bind<Fib322> { factory { Fib322(get(), get()) } }
-    bind<Fib323> { factory { Fib323(get(), get()) } }
-    bind<Fib324> { factory { Fib324(get(), get()) } }
-    bind<Fib325> { factory { Fib325(get(), get()) } }
-    bind<Fib326> { factory { Fib326(get(), get()) } }
-    bind<Fib327> { factory { Fib327(get(), get()) } }
-    bind<Fib328> { factory { Fib328(get(), get()) } }
-    bind<Fib329> { factory { Fib329(get(), get()) } }
-    bind<Fib330> { factory { Fib330(get(), get()) } }
-    bind<Fib331> { factory { Fib331(get(), get()) } }
-    bind<Fib332> { factory { Fib332(get(), get()) } }
-    bind<Fib333> { factory { Fib333(get(), get()) } }
-    bind<Fib334> { factory { Fib334(get(), get()) } }
-    bind<Fib335> { factory { Fib335(get(), get()) } }
-    bind<Fib336> { factory { Fib336(get(), get()) } }
-    bind<Fib337> { factory { Fib337(get(), get()) } }
-    bind<Fib338> { factory { Fib338(get(), get()) } }
-    bind<Fib339> { factory { Fib339(get(), get()) } }
-    bind<Fib340> { factory { Fib340(get(), get()) } }
-    bind<Fib341> { factory { Fib341(get(), get()) } }
-    bind<Fib342> { factory { Fib342(get(), get()) } }
-    bind<Fib343> { factory { Fib343(get(), get()) } }
-    bind<Fib344> { factory { Fib344(get(), get()) } }
-    bind<Fib345> { factory { Fib345(get(), get()) } }
-    bind<Fib346> { factory { Fib346(get(), get()) } }
-    bind<Fib347> { factory { Fib347(get(), get()) } }
-    bind<Fib348> { factory { Fib348(get(), get()) } }
-    bind<Fib349> { factory { Fib349(get(), get()) } }
-    bind<Fib350> { factory { Fib350(get(), get()) } }
-    bind<Fib351> { factory { Fib351(get(), get()) } }
-    bind<Fib352> { factory { Fib352(get(), get()) } }
-    bind<Fib353> { factory { Fib353(get(), get()) } }
-    bind<Fib354> { factory { Fib354(get(), get()) } }
-    bind<Fib355> { factory { Fib355(get(), get()) } }
-    bind<Fib356> { factory { Fib356(get(), get()) } }
-    bind<Fib357> { factory { Fib357(get(), get()) } }
-    bind<Fib358> { factory { Fib358(get(), get()) } }
-    bind<Fib359> { factory { Fib359(get(), get()) } }
-    bind<Fib360> { factory { Fib360(get(), get()) } }
-    bind<Fib361> { factory { Fib361(get(), get()) } }
-    bind<Fib362> { factory { Fib362(get(), get()) } }
-    bind<Fib363> { factory { Fib363(get(), get()) } }
-    bind<Fib364> { factory { Fib364(get(), get()) } }
-    bind<Fib365> { factory { Fib365(get(), get()) } }
-    bind<Fib366> { factory { Fib366(get(), get()) } }
-    bind<Fib367> { factory { Fib367(get(), get()) } }
-    bind<Fib368> { factory { Fib368(get(), get()) } }
-    bind<Fib369> { factory { Fib369(get(), get()) } }
-    bind<Fib370> { factory { Fib370(get(), get()) } }
-    bind<Fib371> { factory { Fib371(get(), get()) } }
-    bind<Fib372> { factory { Fib372(get(), get()) } }
-    bind<Fib373> { factory { Fib373(get(), get()) } }
-    bind<Fib374> { factory { Fib374(get(), get()) } }
-    bind<Fib375> { factory { Fib375(get(), get()) } }
-    bind<Fib376> { factory { Fib376(get(), get()) } }
-    bind<Fib377> { factory { Fib377(get(), get()) } }
-    bind<Fib378> { factory { Fib378(get(), get()) } }
-    bind<Fib379> { factory { Fib379(get(), get()) } }
-    bind<Fib380> { factory { Fib380(get(), get()) } }
-    bind<Fib381> { factory { Fib381(get(), get()) } }
-    bind<Fib382> { factory { Fib382(get(), get()) } }
-    bind<Fib383> { factory { Fib383(get(), get()) } }
-    bind<Fib384> { factory { Fib384(get(), get()) } }
-    bind<Fib385> { factory { Fib385(get(), get()) } }
-    bind<Fib386> { factory { Fib386(get(), get()) } }
-    bind<Fib387> { factory { Fib387(get(), get()) } }
-    bind<Fib388> { factory { Fib388(get(), get()) } }
-    bind<Fib389> { factory { Fib389(get(), get()) } }
-    bind<Fib390> { factory { Fib390(get(), get()) } }
-    bind<Fib391> { factory { Fib391(get(), get()) } }
-    bind<Fib392> { factory { Fib392(get(), get()) } }
-    bind<Fib393> { factory { Fib393(get(), get()) } }
-    bind<Fib394> { factory { Fib394(get(), get()) } }
-    bind<Fib395> { factory { Fib395(get(), get()) } }
-    bind<Fib396> { factory { Fib396(get(), get()) } }
-    bind<Fib397> { factory { Fib397(get(), get()) } }
-    bind<Fib398> { factory { Fib398(get(), get()) } }
-    bind<Fib399> { factory { Fib399(get(), get()) } }
-    bind<Fib400> { factory { Fib400(get(), get()) } }
-    bind<Fib401> { factory { Fib401(get(), get()) } }
-    bind<Fib402> { factory { Fib402(get(), get()) } }
-    bind<Fib403> { factory { Fib403(get(), get()) } }
-    bind<Fib404> { factory { Fib404(get(), get()) } }
-    bind<Fib405> { factory { Fib405(get(), get()) } }
-    bind<Fib406> { factory { Fib406(get(), get()) } }
-    bind<Fib407> { factory { Fib407(get(), get()) } }
-    bind<Fib408> { factory { Fib408(get(), get()) } }
-    bind<Fib409> { factory { Fib409(get(), get()) } }
-    bind<Fib410> { factory { Fib410(get(), get()) } }
-    bind<Fib411> { factory { Fib411(get(), get()) } }
-    bind<Fib412> { factory { Fib412(get(), get()) } }
-    bind<Fib413> { factory { Fib413(get(), get()) } }
-    bind<Fib414> { factory { Fib414(get(), get()) } }
-    bind<Fib415> { factory { Fib415(get(), get()) } }
-    bind<Fib416> { factory { Fib416(get(), get()) } }
-    bind<Fib417> { factory { Fib417(get(), get()) } }
-    bind<Fib418> { factory { Fib418(get(), get()) } }
-    bind<Fib419> { factory { Fib419(get(), get()) } }
-    bind<Fib420> { factory { Fib420(get(), get()) } }
-    bind<Fib421> { factory { Fib421(get(), get()) } }
-    bind<Fib422> { factory { Fib422(get(), get()) } }
-    bind<Fib423> { factory { Fib423(get(), get()) } }
-    bind<Fib424> { factory { Fib424(get(), get()) } }
-    bind<Fib425> { factory { Fib425(get(), get()) } }
-    bind<Fib426> { factory { Fib426(get(), get()) } }
-    bind<Fib427> { factory { Fib427(get(), get()) } }
-    bind<Fib428> { factory { Fib428(get(), get()) } }
-    bind<Fib429> { factory { Fib429(get(), get()) } }
-    bind<Fib430> { factory { Fib430(get(), get()) } }
-    bind<Fib431> { factory { Fib431(get(), get()) } }
-    bind<Fib432> { factory { Fib432(get(), get()) } }
-    bind<Fib433> { factory { Fib433(get(), get()) } }
-    bind<Fib434> { factory { Fib434(get(), get()) } }
-    bind<Fib435> { factory { Fib435(get(), get()) } }
-    bind<Fib436> { factory { Fib436(get(), get()) } }
-    bind<Fib437> { factory { Fib437(get(), get()) } }
-    bind<Fib438> { factory { Fib438(get(), get()) } }
-    bind<Fib439> { factory { Fib439(get(), get()) } }
-    bind<Fib440> { factory { Fib440(get(), get()) } }
-    bind<Fib441> { factory { Fib441(get(), get()) } }
-    bind<Fib442> { factory { Fib442(get(), get()) } }
-    bind<Fib443> { factory { Fib443(get(), get()) } }
-    bind<Fib444> { factory { Fib444(get(), get()) } }
-    bind<Fib445> { factory { Fib445(get(), get()) } }
-    bind<Fib446> { factory { Fib446(get(), get()) } }
-    bind<Fib447> { factory { Fib447(get(), get()) } }
-    bind<Fib448> { factory { Fib448(get(), get()) } }
-    bind<Fib449> { factory { Fib449(get(), get()) } }
-    bind<Fib450> { factory { Fib450(get(), get()) } }
+val katanaKotlinModule = Module("katanaKotlinModule") {
+    KatanaKotlinModule.bind(this)
+}
+
+object KatanaKotlinModule {
+    fun bind(context: ModuleBindingContext) = context.apply {
+        bind1(this)
+        bind100(this)
+        bind200(this)
+        bind300(this)
+        bind400(this)
+    }
+
+    private fun bind1(context: ModuleBindingContext) = context.apply {
+        singleton { FibonacciKotlin.Fib1() }
+        singleton { FibonacciKotlin.Fib2() }
+        factory { FibonacciKotlin.Fib3(get(), get()) }
+        factory { FibonacciKotlin.Fib4(get(), get()) }
+        factory { FibonacciKotlin.Fib5(get(), get()) }
+        factory { FibonacciKotlin.Fib6(get(), get()) }
+        factory { FibonacciKotlin.Fib7(get(), get()) }
+        factory { FibonacciKotlin.Fib8(get(), get()) }
+        factory { FibonacciKotlin.Fib9(get(), get()) }
+        factory { FibonacciKotlin.Fib10(get(), get()) }
+        factory { FibonacciKotlin.Fib11(get(), get()) }
+        factory { FibonacciKotlin.Fib12(get(), get()) }
+        factory { FibonacciKotlin.Fib13(get(), get()) }
+        factory { FibonacciKotlin.Fib14(get(), get()) }
+        factory { FibonacciKotlin.Fib15(get(), get()) }
+        factory { FibonacciKotlin.Fib16(get(), get()) }
+        factory { FibonacciKotlin.Fib17(get(), get()) }
+        factory { FibonacciKotlin.Fib18(get(), get()) }
+        factory { FibonacciKotlin.Fib19(get(), get()) }
+        factory { FibonacciKotlin.Fib20(get(), get()) }
+        factory { FibonacciKotlin.Fib21(get(), get()) }
+        factory { FibonacciKotlin.Fib22(get(), get()) }
+        factory { FibonacciKotlin.Fib23(get(), get()) }
+        factory { FibonacciKotlin.Fib24(get(), get()) }
+        factory { FibonacciKotlin.Fib25(get(), get()) }
+        factory { FibonacciKotlin.Fib26(get(), get()) }
+        factory { FibonacciKotlin.Fib27(get(), get()) }
+        factory { FibonacciKotlin.Fib28(get(), get()) }
+        factory { FibonacciKotlin.Fib29(get(), get()) }
+        factory { FibonacciKotlin.Fib30(get(), get()) }
+        factory { FibonacciKotlin.Fib31(get(), get()) }
+        factory { FibonacciKotlin.Fib32(get(), get()) }
+        factory { FibonacciKotlin.Fib33(get(), get()) }
+        factory { FibonacciKotlin.Fib34(get(), get()) }
+        factory { FibonacciKotlin.Fib35(get(), get()) }
+        factory { FibonacciKotlin.Fib36(get(), get()) }
+        factory { FibonacciKotlin.Fib37(get(), get()) }
+        factory { FibonacciKotlin.Fib38(get(), get()) }
+        factory { FibonacciKotlin.Fib39(get(), get()) }
+        factory { FibonacciKotlin.Fib40(get(), get()) }
+        factory { FibonacciKotlin.Fib41(get(), get()) }
+        factory { FibonacciKotlin.Fib42(get(), get()) }
+        factory { FibonacciKotlin.Fib43(get(), get()) }
+        factory { FibonacciKotlin.Fib44(get(), get()) }
+        factory { FibonacciKotlin.Fib45(get(), get()) }
+        factory { FibonacciKotlin.Fib46(get(), get()) }
+        factory { FibonacciKotlin.Fib47(get(), get()) }
+        factory { FibonacciKotlin.Fib48(get(), get()) }
+        factory { FibonacciKotlin.Fib49(get(), get()) }
+        factory { FibonacciKotlin.Fib50(get(), get()) }
+        factory { FibonacciKotlin.Fib51(get(), get()) }
+        factory { FibonacciKotlin.Fib52(get(), get()) }
+        factory { FibonacciKotlin.Fib53(get(), get()) }
+        factory { FibonacciKotlin.Fib54(get(), get()) }
+        factory { FibonacciKotlin.Fib55(get(), get()) }
+        factory { FibonacciKotlin.Fib56(get(), get()) }
+        factory { FibonacciKotlin.Fib57(get(), get()) }
+        factory { FibonacciKotlin.Fib58(get(), get()) }
+        factory { FibonacciKotlin.Fib59(get(), get()) }
+        factory { FibonacciKotlin.Fib60(get(), get()) }
+        factory { FibonacciKotlin.Fib61(get(), get()) }
+        factory { FibonacciKotlin.Fib62(get(), get()) }
+        factory { FibonacciKotlin.Fib63(get(), get()) }
+        factory { FibonacciKotlin.Fib64(get(), get()) }
+        factory { FibonacciKotlin.Fib65(get(), get()) }
+        factory { FibonacciKotlin.Fib66(get(), get()) }
+        factory { FibonacciKotlin.Fib67(get(), get()) }
+        factory { FibonacciKotlin.Fib68(get(), get()) }
+        factory { FibonacciKotlin.Fib69(get(), get()) }
+        factory { FibonacciKotlin.Fib70(get(), get()) }
+        factory { FibonacciKotlin.Fib71(get(), get()) }
+        factory { FibonacciKotlin.Fib72(get(), get()) }
+        factory { FibonacciKotlin.Fib73(get(), get()) }
+        factory { FibonacciKotlin.Fib74(get(), get()) }
+        factory { FibonacciKotlin.Fib75(get(), get()) }
+        factory { FibonacciKotlin.Fib76(get(), get()) }
+        factory { FibonacciKotlin.Fib77(get(), get()) }
+        factory { FibonacciKotlin.Fib78(get(), get()) }
+        factory { FibonacciKotlin.Fib79(get(), get()) }
+        factory { FibonacciKotlin.Fib80(get(), get()) }
+        factory { FibonacciKotlin.Fib81(get(), get()) }
+        factory { FibonacciKotlin.Fib82(get(), get()) }
+        factory { FibonacciKotlin.Fib83(get(), get()) }
+        factory { FibonacciKotlin.Fib84(get(), get()) }
+        factory { FibonacciKotlin.Fib85(get(), get()) }
+        factory { FibonacciKotlin.Fib86(get(), get()) }
+        factory { FibonacciKotlin.Fib87(get(), get()) }
+        factory { FibonacciKotlin.Fib88(get(), get()) }
+        factory { FibonacciKotlin.Fib89(get(), get()) }
+        factory { FibonacciKotlin.Fib90(get(), get()) }
+        factory { FibonacciKotlin.Fib91(get(), get()) }
+        factory { FibonacciKotlin.Fib92(get(), get()) }
+        factory { FibonacciKotlin.Fib93(get(), get()) }
+        factory { FibonacciKotlin.Fib94(get(), get()) }
+        factory { FibonacciKotlin.Fib95(get(), get()) }
+        factory { FibonacciKotlin.Fib96(get(), get()) }
+        factory { FibonacciKotlin.Fib97(get(), get()) }
+        factory { FibonacciKotlin.Fib98(get(), get()) }
+        factory { FibonacciKotlin.Fib99(get(), get()) }
+    }
+
+    private fun bind100(context: ModuleBindingContext) = context.apply {
+        factory { FibonacciKotlin.Fib100(get(), get()) }
+        factory { FibonacciKotlin.Fib101(get(), get()) }
+        factory { FibonacciKotlin.Fib102(get(), get()) }
+        factory { FibonacciKotlin.Fib103(get(), get()) }
+        factory { FibonacciKotlin.Fib104(get(), get()) }
+        factory { FibonacciKotlin.Fib105(get(), get()) }
+        factory { FibonacciKotlin.Fib106(get(), get()) }
+        factory { FibonacciKotlin.Fib107(get(), get()) }
+        factory { FibonacciKotlin.Fib108(get(), get()) }
+        factory { FibonacciKotlin.Fib109(get(), get()) }
+        factory { FibonacciKotlin.Fib110(get(), get()) }
+        factory { FibonacciKotlin.Fib111(get(), get()) }
+        factory { FibonacciKotlin.Fib112(get(), get()) }
+        factory { FibonacciKotlin.Fib113(get(), get()) }
+        factory { FibonacciKotlin.Fib114(get(), get()) }
+        factory { FibonacciKotlin.Fib115(get(), get()) }
+        factory { FibonacciKotlin.Fib116(get(), get()) }
+        factory { FibonacciKotlin.Fib117(get(), get()) }
+        factory { FibonacciKotlin.Fib118(get(), get()) }
+        factory { FibonacciKotlin.Fib119(get(), get()) }
+        factory { FibonacciKotlin.Fib120(get(), get()) }
+        factory { FibonacciKotlin.Fib121(get(), get()) }
+        factory { FibonacciKotlin.Fib122(get(), get()) }
+        factory { FibonacciKotlin.Fib123(get(), get()) }
+        factory { FibonacciKotlin.Fib124(get(), get()) }
+        factory { FibonacciKotlin.Fib125(get(), get()) }
+        factory { FibonacciKotlin.Fib126(get(), get()) }
+        factory { FibonacciKotlin.Fib127(get(), get()) }
+        factory { FibonacciKotlin.Fib128(get(), get()) }
+        factory { FibonacciKotlin.Fib129(get(), get()) }
+        factory { FibonacciKotlin.Fib130(get(), get()) }
+        factory { FibonacciKotlin.Fib131(get(), get()) }
+        factory { FibonacciKotlin.Fib132(get(), get()) }
+        factory { FibonacciKotlin.Fib133(get(), get()) }
+        factory { FibonacciKotlin.Fib134(get(), get()) }
+        factory { FibonacciKotlin.Fib135(get(), get()) }
+        factory { FibonacciKotlin.Fib136(get(), get()) }
+        factory { FibonacciKotlin.Fib137(get(), get()) }
+        factory { FibonacciKotlin.Fib138(get(), get()) }
+        factory { FibonacciKotlin.Fib139(get(), get()) }
+        factory { FibonacciKotlin.Fib140(get(), get()) }
+        factory { FibonacciKotlin.Fib141(get(), get()) }
+        factory { FibonacciKotlin.Fib142(get(), get()) }
+        factory { FibonacciKotlin.Fib143(get(), get()) }
+        factory { FibonacciKotlin.Fib144(get(), get()) }
+        factory { FibonacciKotlin.Fib145(get(), get()) }
+        factory { FibonacciKotlin.Fib146(get(), get()) }
+        factory { FibonacciKotlin.Fib147(get(), get()) }
+        factory { FibonacciKotlin.Fib148(get(), get()) }
+        factory { FibonacciKotlin.Fib149(get(), get()) }
+        factory { FibonacciKotlin.Fib150(get(), get()) }
+        factory { FibonacciKotlin.Fib151(get(), get()) }
+        factory { FibonacciKotlin.Fib152(get(), get()) }
+        factory { FibonacciKotlin.Fib153(get(), get()) }
+        factory { FibonacciKotlin.Fib154(get(), get()) }
+        factory { FibonacciKotlin.Fib155(get(), get()) }
+        factory { FibonacciKotlin.Fib156(get(), get()) }
+        factory { FibonacciKotlin.Fib157(get(), get()) }
+        factory { FibonacciKotlin.Fib158(get(), get()) }
+        factory { FibonacciKotlin.Fib159(get(), get()) }
+        factory { FibonacciKotlin.Fib160(get(), get()) }
+        factory { FibonacciKotlin.Fib161(get(), get()) }
+        factory { FibonacciKotlin.Fib162(get(), get()) }
+        factory { FibonacciKotlin.Fib163(get(), get()) }
+        factory { FibonacciKotlin.Fib164(get(), get()) }
+        factory { FibonacciKotlin.Fib165(get(), get()) }
+        factory { FibonacciKotlin.Fib166(get(), get()) }
+        factory { FibonacciKotlin.Fib167(get(), get()) }
+        factory { FibonacciKotlin.Fib168(get(), get()) }
+        factory { FibonacciKotlin.Fib169(get(), get()) }
+        factory { FibonacciKotlin.Fib170(get(), get()) }
+        factory { FibonacciKotlin.Fib171(get(), get()) }
+        factory { FibonacciKotlin.Fib172(get(), get()) }
+        factory { FibonacciKotlin.Fib173(get(), get()) }
+        factory { FibonacciKotlin.Fib174(get(), get()) }
+        factory { FibonacciKotlin.Fib175(get(), get()) }
+        factory { FibonacciKotlin.Fib176(get(), get()) }
+        factory { FibonacciKotlin.Fib177(get(), get()) }
+        factory { FibonacciKotlin.Fib178(get(), get()) }
+        factory { FibonacciKotlin.Fib179(get(), get()) }
+        factory { FibonacciKotlin.Fib180(get(), get()) }
+        factory { FibonacciKotlin.Fib181(get(), get()) }
+        factory { FibonacciKotlin.Fib182(get(), get()) }
+        factory { FibonacciKotlin.Fib183(get(), get()) }
+        factory { FibonacciKotlin.Fib184(get(), get()) }
+        factory { FibonacciKotlin.Fib185(get(), get()) }
+        factory { FibonacciKotlin.Fib186(get(), get()) }
+        factory { FibonacciKotlin.Fib187(get(), get()) }
+        factory { FibonacciKotlin.Fib188(get(), get()) }
+        factory { FibonacciKotlin.Fib189(get(), get()) }
+        factory { FibonacciKotlin.Fib190(get(), get()) }
+        factory { FibonacciKotlin.Fib191(get(), get()) }
+        factory { FibonacciKotlin.Fib192(get(), get()) }
+        factory { FibonacciKotlin.Fib193(get(), get()) }
+        factory { FibonacciKotlin.Fib194(get(), get()) }
+        factory { FibonacciKotlin.Fib195(get(), get()) }
+        factory { FibonacciKotlin.Fib196(get(), get()) }
+        factory { FibonacciKotlin.Fib197(get(), get()) }
+        factory { FibonacciKotlin.Fib198(get(), get()) }
+        factory { FibonacciKotlin.Fib199(get(), get()) }
+    }
+
+    private fun bind200(context: ModuleBindingContext) = context.apply {
+        factory { FibonacciKotlin.Fib200(get(), get()) }
+        factory { FibonacciKotlin.Fib201(get(), get()) }
+        factory { FibonacciKotlin.Fib202(get(), get()) }
+        factory { FibonacciKotlin.Fib203(get(), get()) }
+        factory { FibonacciKotlin.Fib204(get(), get()) }
+        factory { FibonacciKotlin.Fib205(get(), get()) }
+        factory { FibonacciKotlin.Fib206(get(), get()) }
+        factory { FibonacciKotlin.Fib207(get(), get()) }
+        factory { FibonacciKotlin.Fib208(get(), get()) }
+        factory { FibonacciKotlin.Fib209(get(), get()) }
+        factory { FibonacciKotlin.Fib210(get(), get()) }
+        factory { FibonacciKotlin.Fib211(get(), get()) }
+        factory { FibonacciKotlin.Fib212(get(), get()) }
+        factory { FibonacciKotlin.Fib213(get(), get()) }
+        factory { FibonacciKotlin.Fib214(get(), get()) }
+        factory { FibonacciKotlin.Fib215(get(), get()) }
+        factory { FibonacciKotlin.Fib216(get(), get()) }
+        factory { FibonacciKotlin.Fib217(get(), get()) }
+        factory { FibonacciKotlin.Fib218(get(), get()) }
+        factory { FibonacciKotlin.Fib219(get(), get()) }
+        factory { FibonacciKotlin.Fib220(get(), get()) }
+        factory { FibonacciKotlin.Fib221(get(), get()) }
+        factory { FibonacciKotlin.Fib222(get(), get()) }
+        factory { FibonacciKotlin.Fib223(get(), get()) }
+        factory { FibonacciKotlin.Fib224(get(), get()) }
+        factory { FibonacciKotlin.Fib225(get(), get()) }
+        factory { FibonacciKotlin.Fib226(get(), get()) }
+        factory { FibonacciKotlin.Fib227(get(), get()) }
+        factory { FibonacciKotlin.Fib228(get(), get()) }
+        factory { FibonacciKotlin.Fib229(get(), get()) }
+        factory { FibonacciKotlin.Fib230(get(), get()) }
+        factory { FibonacciKotlin.Fib231(get(), get()) }
+        factory { FibonacciKotlin.Fib232(get(), get()) }
+        factory { FibonacciKotlin.Fib233(get(), get()) }
+        factory { FibonacciKotlin.Fib234(get(), get()) }
+        factory { FibonacciKotlin.Fib235(get(), get()) }
+        factory { FibonacciKotlin.Fib236(get(), get()) }
+        factory { FibonacciKotlin.Fib237(get(), get()) }
+        factory { FibonacciKotlin.Fib238(get(), get()) }
+        factory { FibonacciKotlin.Fib239(get(), get()) }
+        factory { FibonacciKotlin.Fib240(get(), get()) }
+        factory { FibonacciKotlin.Fib241(get(), get()) }
+        factory { FibonacciKotlin.Fib242(get(), get()) }
+        factory { FibonacciKotlin.Fib243(get(), get()) }
+        factory { FibonacciKotlin.Fib244(get(), get()) }
+        factory { FibonacciKotlin.Fib245(get(), get()) }
+        factory { FibonacciKotlin.Fib246(get(), get()) }
+        factory { FibonacciKotlin.Fib247(get(), get()) }
+        factory { FibonacciKotlin.Fib248(get(), get()) }
+        factory { FibonacciKotlin.Fib249(get(), get()) }
+        factory { FibonacciKotlin.Fib250(get(), get()) }
+        factory { FibonacciKotlin.Fib251(get(), get()) }
+        factory { FibonacciKotlin.Fib252(get(), get()) }
+        factory { FibonacciKotlin.Fib253(get(), get()) }
+        factory { FibonacciKotlin.Fib254(get(), get()) }
+        factory { FibonacciKotlin.Fib255(get(), get()) }
+        factory { FibonacciKotlin.Fib256(get(), get()) }
+        factory { FibonacciKotlin.Fib257(get(), get()) }
+        factory { FibonacciKotlin.Fib258(get(), get()) }
+        factory { FibonacciKotlin.Fib259(get(), get()) }
+        factory { FibonacciKotlin.Fib260(get(), get()) }
+        factory { FibonacciKotlin.Fib261(get(), get()) }
+        factory { FibonacciKotlin.Fib262(get(), get()) }
+        factory { FibonacciKotlin.Fib263(get(), get()) }
+        factory { FibonacciKotlin.Fib264(get(), get()) }
+        factory { FibonacciKotlin.Fib265(get(), get()) }
+        factory { FibonacciKotlin.Fib266(get(), get()) }
+        factory { FibonacciKotlin.Fib267(get(), get()) }
+        factory { FibonacciKotlin.Fib268(get(), get()) }
+        factory { FibonacciKotlin.Fib269(get(), get()) }
+        factory { FibonacciKotlin.Fib270(get(), get()) }
+        factory { FibonacciKotlin.Fib271(get(), get()) }
+        factory { FibonacciKotlin.Fib272(get(), get()) }
+        factory { FibonacciKotlin.Fib273(get(), get()) }
+        factory { FibonacciKotlin.Fib274(get(), get()) }
+        factory { FibonacciKotlin.Fib275(get(), get()) }
+        factory { FibonacciKotlin.Fib276(get(), get()) }
+        factory { FibonacciKotlin.Fib277(get(), get()) }
+        factory { FibonacciKotlin.Fib278(get(), get()) }
+        factory { FibonacciKotlin.Fib279(get(), get()) }
+        factory { FibonacciKotlin.Fib280(get(), get()) }
+        factory { FibonacciKotlin.Fib281(get(), get()) }
+        factory { FibonacciKotlin.Fib282(get(), get()) }
+        factory { FibonacciKotlin.Fib283(get(), get()) }
+        factory { FibonacciKotlin.Fib284(get(), get()) }
+        factory { FibonacciKotlin.Fib285(get(), get()) }
+        factory { FibonacciKotlin.Fib286(get(), get()) }
+        factory { FibonacciKotlin.Fib287(get(), get()) }
+        factory { FibonacciKotlin.Fib288(get(), get()) }
+        factory { FibonacciKotlin.Fib289(get(), get()) }
+        factory { FibonacciKotlin.Fib290(get(), get()) }
+        factory { FibonacciKotlin.Fib291(get(), get()) }
+        factory { FibonacciKotlin.Fib292(get(), get()) }
+        factory { FibonacciKotlin.Fib293(get(), get()) }
+        factory { FibonacciKotlin.Fib294(get(), get()) }
+        factory { FibonacciKotlin.Fib295(get(), get()) }
+        factory { FibonacciKotlin.Fib296(get(), get()) }
+        factory { FibonacciKotlin.Fib297(get(), get()) }
+        factory { FibonacciKotlin.Fib298(get(), get()) }
+        factory { FibonacciKotlin.Fib299(get(), get()) }
+    }
+
+    private fun bind300(context: ModuleBindingContext) = context.apply {
+        factory { FibonacciKotlin.Fib300(get(), get()) }
+        factory { FibonacciKotlin.Fib301(get(), get()) }
+        factory { FibonacciKotlin.Fib302(get(), get()) }
+        factory { FibonacciKotlin.Fib303(get(), get()) }
+        factory { FibonacciKotlin.Fib304(get(), get()) }
+        factory { FibonacciKotlin.Fib305(get(), get()) }
+        factory { FibonacciKotlin.Fib306(get(), get()) }
+        factory { FibonacciKotlin.Fib307(get(), get()) }
+        factory { FibonacciKotlin.Fib308(get(), get()) }
+        factory { FibonacciKotlin.Fib309(get(), get()) }
+        factory { FibonacciKotlin.Fib310(get(), get()) }
+        factory { FibonacciKotlin.Fib311(get(), get()) }
+        factory { FibonacciKotlin.Fib312(get(), get()) }
+        factory { FibonacciKotlin.Fib313(get(), get()) }
+        factory { FibonacciKotlin.Fib314(get(), get()) }
+        factory { FibonacciKotlin.Fib315(get(), get()) }
+        factory { FibonacciKotlin.Fib316(get(), get()) }
+        factory { FibonacciKotlin.Fib317(get(), get()) }
+        factory { FibonacciKotlin.Fib318(get(), get()) }
+        factory { FibonacciKotlin.Fib319(get(), get()) }
+        factory { FibonacciKotlin.Fib320(get(), get()) }
+        factory { FibonacciKotlin.Fib321(get(), get()) }
+        factory { FibonacciKotlin.Fib322(get(), get()) }
+        factory { FibonacciKotlin.Fib323(get(), get()) }
+        factory { FibonacciKotlin.Fib324(get(), get()) }
+        factory { FibonacciKotlin.Fib325(get(), get()) }
+        factory { FibonacciKotlin.Fib326(get(), get()) }
+        factory { FibonacciKotlin.Fib327(get(), get()) }
+        factory { FibonacciKotlin.Fib328(get(), get()) }
+        factory { FibonacciKotlin.Fib329(get(), get()) }
+        factory { FibonacciKotlin.Fib330(get(), get()) }
+        factory { FibonacciKotlin.Fib331(get(), get()) }
+        factory { FibonacciKotlin.Fib332(get(), get()) }
+        factory { FibonacciKotlin.Fib333(get(), get()) }
+        factory { FibonacciKotlin.Fib334(get(), get()) }
+        factory { FibonacciKotlin.Fib335(get(), get()) }
+        factory { FibonacciKotlin.Fib336(get(), get()) }
+        factory { FibonacciKotlin.Fib337(get(), get()) }
+        factory { FibonacciKotlin.Fib338(get(), get()) }
+        factory { FibonacciKotlin.Fib339(get(), get()) }
+        factory { FibonacciKotlin.Fib340(get(), get()) }
+        factory { FibonacciKotlin.Fib341(get(), get()) }
+        factory { FibonacciKotlin.Fib342(get(), get()) }
+        factory { FibonacciKotlin.Fib343(get(), get()) }
+        factory { FibonacciKotlin.Fib344(get(), get()) }
+        factory { FibonacciKotlin.Fib345(get(), get()) }
+        factory { FibonacciKotlin.Fib346(get(), get()) }
+        factory { FibonacciKotlin.Fib347(get(), get()) }
+        factory { FibonacciKotlin.Fib348(get(), get()) }
+        factory { FibonacciKotlin.Fib349(get(), get()) }
+        factory { FibonacciKotlin.Fib350(get(), get()) }
+        factory { FibonacciKotlin.Fib351(get(), get()) }
+        factory { FibonacciKotlin.Fib352(get(), get()) }
+        factory { FibonacciKotlin.Fib353(get(), get()) }
+        factory { FibonacciKotlin.Fib354(get(), get()) }
+        factory { FibonacciKotlin.Fib355(get(), get()) }
+        factory { FibonacciKotlin.Fib356(get(), get()) }
+        factory { FibonacciKotlin.Fib357(get(), get()) }
+        factory { FibonacciKotlin.Fib358(get(), get()) }
+        factory { FibonacciKotlin.Fib359(get(), get()) }
+        factory { FibonacciKotlin.Fib360(get(), get()) }
+        factory { FibonacciKotlin.Fib361(get(), get()) }
+        factory { FibonacciKotlin.Fib362(get(), get()) }
+        factory { FibonacciKotlin.Fib363(get(), get()) }
+        factory { FibonacciKotlin.Fib364(get(), get()) }
+        factory { FibonacciKotlin.Fib365(get(), get()) }
+        factory { FibonacciKotlin.Fib366(get(), get()) }
+        factory { FibonacciKotlin.Fib367(get(), get()) }
+        factory { FibonacciKotlin.Fib368(get(), get()) }
+        factory { FibonacciKotlin.Fib369(get(), get()) }
+        factory { FibonacciKotlin.Fib370(get(), get()) }
+        factory { FibonacciKotlin.Fib371(get(), get()) }
+        factory { FibonacciKotlin.Fib372(get(), get()) }
+        factory { FibonacciKotlin.Fib373(get(), get()) }
+        factory { FibonacciKotlin.Fib374(get(), get()) }
+        factory { FibonacciKotlin.Fib375(get(), get()) }
+        factory { FibonacciKotlin.Fib376(get(), get()) }
+        factory { FibonacciKotlin.Fib377(get(), get()) }
+        factory { FibonacciKotlin.Fib378(get(), get()) }
+        factory { FibonacciKotlin.Fib379(get(), get()) }
+        factory { FibonacciKotlin.Fib380(get(), get()) }
+        factory { FibonacciKotlin.Fib381(get(), get()) }
+        factory { FibonacciKotlin.Fib382(get(), get()) }
+        factory { FibonacciKotlin.Fib383(get(), get()) }
+        factory { FibonacciKotlin.Fib384(get(), get()) }
+        factory { FibonacciKotlin.Fib385(get(), get()) }
+        factory { FibonacciKotlin.Fib386(get(), get()) }
+        factory { FibonacciKotlin.Fib387(get(), get()) }
+        factory { FibonacciKotlin.Fib388(get(), get()) }
+        factory { FibonacciKotlin.Fib389(get(), get()) }
+        factory { FibonacciKotlin.Fib390(get(), get()) }
+        factory { FibonacciKotlin.Fib391(get(), get()) }
+        factory { FibonacciKotlin.Fib392(get(), get()) }
+        factory { FibonacciKotlin.Fib393(get(), get()) }
+        factory { FibonacciKotlin.Fib394(get(), get()) }
+        factory { FibonacciKotlin.Fib395(get(), get()) }
+        factory { FibonacciKotlin.Fib396(get(), get()) }
+        factory { FibonacciKotlin.Fib397(get(), get()) }
+        factory { FibonacciKotlin.Fib398(get(), get()) }
+        factory { FibonacciKotlin.Fib399(get(), get()) }
+    }
+
+    private fun bind400(context: ModuleBindingContext) = context.apply {
+        factory { FibonacciKotlin.Fib400(get(), get()) }
+        factory { FibonacciKotlin.Fib401(get(), get()) }
+        factory { FibonacciKotlin.Fib402(get(), get()) }
+        factory { FibonacciKotlin.Fib403(get(), get()) }
+        factory { FibonacciKotlin.Fib404(get(), get()) }
+        factory { FibonacciKotlin.Fib405(get(), get()) }
+        factory { FibonacciKotlin.Fib406(get(), get()) }
+        factory { FibonacciKotlin.Fib407(get(), get()) }
+        factory { FibonacciKotlin.Fib408(get(), get()) }
+        factory { FibonacciKotlin.Fib409(get(), get()) }
+        factory { FibonacciKotlin.Fib410(get(), get()) }
+        factory { FibonacciKotlin.Fib411(get(), get()) }
+        factory { FibonacciKotlin.Fib412(get(), get()) }
+        factory { FibonacciKotlin.Fib413(get(), get()) }
+        factory { FibonacciKotlin.Fib414(get(), get()) }
+        factory { FibonacciKotlin.Fib415(get(), get()) }
+        factory { FibonacciKotlin.Fib416(get(), get()) }
+        factory { FibonacciKotlin.Fib417(get(), get()) }
+        factory { FibonacciKotlin.Fib418(get(), get()) }
+        factory { FibonacciKotlin.Fib419(get(), get()) }
+        factory { FibonacciKotlin.Fib420(get(), get()) }
+        factory { FibonacciKotlin.Fib421(get(), get()) }
+        factory { FibonacciKotlin.Fib422(get(), get()) }
+        factory { FibonacciKotlin.Fib423(get(), get()) }
+        factory { FibonacciKotlin.Fib424(get(), get()) }
+        factory { FibonacciKotlin.Fib425(get(), get()) }
+        factory { FibonacciKotlin.Fib426(get(), get()) }
+        factory { FibonacciKotlin.Fib427(get(), get()) }
+        factory { FibonacciKotlin.Fib428(get(), get()) }
+        factory { FibonacciKotlin.Fib429(get(), get()) }
+        factory { FibonacciKotlin.Fib430(get(), get()) }
+        factory { FibonacciKotlin.Fib431(get(), get()) }
+        factory { FibonacciKotlin.Fib432(get(), get()) }
+        factory { FibonacciKotlin.Fib433(get(), get()) }
+        factory { FibonacciKotlin.Fib434(get(), get()) }
+        factory { FibonacciKotlin.Fib435(get(), get()) }
+        factory { FibonacciKotlin.Fib436(get(), get()) }
+        factory { FibonacciKotlin.Fib437(get(), get()) }
+        factory { FibonacciKotlin.Fib438(get(), get()) }
+        factory { FibonacciKotlin.Fib439(get(), get()) }
+        factory { FibonacciKotlin.Fib440(get(), get()) }
+        factory { FibonacciKotlin.Fib441(get(), get()) }
+        factory { FibonacciKotlin.Fib442(get(), get()) }
+        factory { FibonacciKotlin.Fib443(get(), get()) }
+        factory { FibonacciKotlin.Fib444(get(), get()) }
+        factory { FibonacciKotlin.Fib445(get(), get()) }
+        factory { FibonacciKotlin.Fib446(get(), get()) }
+        factory { FibonacciKotlin.Fib447(get(), get()) }
+        factory { FibonacciKotlin.Fib448(get(), get()) }
+        factory { FibonacciKotlin.Fib449(get(), get()) }
+        factory { FibonacciKotlin.Fib450(get(), get()) }
+    }
 }
