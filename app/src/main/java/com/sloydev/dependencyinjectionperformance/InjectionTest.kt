@@ -7,6 +7,8 @@ import com.sloydev.dependencyinjectionperformance.dagger2.DaggerJavaDaggerCompon
 import com.sloydev.dependencyinjectionperformance.dagger2.DaggerKotlinDaggerComponent
 import com.sloydev.dependencyinjectionperformance.dagger2.JavaDaggerComponent
 import com.sloydev.dependencyinjectionperformance.dagger2.KotlinDaggerComponent
+import com.sloydev.dependencyinjectionperformance.dependencyproperty.JavaDependencyPropertyModule
+import com.sloydev.dependencyinjectionperformance.dependencyproperty.KotlinDependencyPropertyModule
 import com.sloydev.dependencyinjectionperformance.katana.katanaJavaModule
 import com.sloydev.dependencyinjectionperformance.katana.katanaKotlinModule
 import com.sloydev.dependencyinjectionperformance.kodein.kodeinJavaModule
@@ -38,7 +40,8 @@ class InjectionTest : KoinComponent {
             kodeinTest(),
             katanaTest(),
             customTest(),
-            daggerTest()
+            daggerTest(),
+            dependencyPropertyTest()
         )
         return results
     }
@@ -152,4 +155,21 @@ class InjectionTest : KoinComponent {
         @Inject
         lateinit var daggerFib8: FibonacciJava.Fib8
     }
+
+    private fun dependencyPropertyTest(): LibraryResult {
+        log("Running DependencyProperty...")
+        lateinit var kotlinModule: KotlinDependencyPropertyModule
+        lateinit var javaModule: JavaDependencyPropertyModule
+        return LibraryResult("DepPro", mapOf(
+            Variant.KOTLIN to runTest(
+                setup = { kotlinModule = KotlinDependencyPropertyModule() },
+                test = { kotlinModule.fib8 }
+            ),
+            Variant.JAVA to runTest(
+                setup = { javaModule = JavaDependencyPropertyModule() },
+                test = { javaModule.fib8 }
+            )
+        ))
+    }
+
 }

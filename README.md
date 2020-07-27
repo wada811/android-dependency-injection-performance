@@ -7,6 +7,7 @@ This project aims to measure the performance of several Dependency Injection fra
 - [Kodein](http://kodein.org/Kodein-DI/) - 7.3.0
 - [Dagger 2](https://google.github.io/dagger/) - 2.28.3
 - [Katana](https://github.com/rewe-digital-incubator/katana/) - 1.13.2
+- [DependencyProperty](https://github.com/wada811/DependencyProperty/) - master(3caa9ffde5)
 
 ## The test
 The test data are classes with dependencies in a structure similar to Fibonacci sequence, to simulate multiple levels of transitive dependencies.
@@ -21,87 +22,16 @@ The actual test is implemented in the class [InjectionTest.kt](https://github.co
 ## Results
 Results can be quite different between different devices, so here are some results in different devices with different Android versions. Each table contains the **median** time of each library's setup and injection. More results are welcomed.
 
-- [Samsung Galaxy J5](#samsung-galaxy-j5)
-- [Samsung Galaxy S8](#samsung-galaxy-s8)
-- [Huawei P8 Lite](#huawei-p8-lite)
-- [Xiaomi MI A1](#xiaomi-mi-a1)
-- [OnePlus One](#oneplus-one)
-- [OnePlus 5](#oneplus-5)
-- [Nexus 6](#nexus-6)
+- [Pixel 3](#pixel-3)
 
-### Samsung Galaxy J5
-samsung j5nlte with Android 6.0.1
- 
+### Pixel 3
+google blueline with Android 10
+
 Library | Setup Kotlin | Setup Java | Inject Kotlin | Inject Java
 --- | ---:| ---:| ---:| ---:
-**Koin** | 51.47 ms | 53.65 ms  | 2.47 ms | 2.52 ms
-**Kodein** | 73.36 ms | 75.21 ms  | 9.89 ms | 9.58 ms
-**Katana** | 12.34 ms | 12.30 ms  | 2.00 ms | 1.94 ms
-**Custom** | 4.85 ms | 4.81 ms  | 0.73 ms | 0.84 ms
-**Dagger** | 0.02 ms | 0.02 ms  | 0.27 ms | 0.23 ms
-
-### Samsung Galaxy S8
-samsung dreamlte with Android 8.0.0
- 
-Library | Setup Kotlin | Setup Java | Inject Kotlin | Inject Java
---- | ---:| ---:| ---:| ---:
-**Koin** | 5.68 ms | 6.04 ms  | 0.13 ms | 0.21 ms
-**Kodein** | 7.13 ms | 7.38 ms  | 0.20 ms | 0.21 ms
-**Katana** | 0.64 ms | 0.68 ms  | 0.21 ms | 0.16 ms
-**Custom** | 0.15 ms | 0.16 ms  | 0.11 ms | 0.11 ms
-**Dagger** | 0.01 ms | 0.01 ms  | 0.10 ms | 0.10 ms
-
-### Huawei P8 Lite
-Huawei hwALE-H with Android 6.0
- 
-Library | Setup Kotlin | Setup Java | Inject Kotlin | Inject Java
---- | ---:| ---:| ---:| ---:
-**Koin** | 12.12 ms | 12.34 ms  | 0.26 ms | 0.26 ms
-**Kodein** | 14.46 ms | 14.52 ms  | 0.80 ms | 0.79 ms
-**Katana** | 2.01 ms | 1.99 ms  | 0.18 ms | 0.18 ms
-**Custom** | 0.51 ms | 0.50 ms  | 0.08 ms | 0.09 ms
-**Dagger** | 0.00 ms | 0.00 ms  | 0.03 ms | 0.02 ms
-
-### Xiaomi MI A1
-xiaomi tissot_sprout with Android 8.1.0
- 
-Library | Setup Kotlin | Setup Java | Inject Kotlin | Inject Java
---- | ---:| ---:| ---:| ---:
-**Koin** | 9.17 ms | 11.10 ms  | 0.25 ms | 0.54 ms
-**Kodein** | 16.64 ms | 16.22 ms  | 0.82 ms | 0.32 ms
-**Katana** | 1.42 ms | 1.28 ms  | 0.31 ms | 0.31 ms
-**Custom** | 0.28 ms | 0.28 ms  | 0.19 ms | 0.23 ms
-**Dagger** | 0.02 ms | 0.02 ms  | 0.28 ms | 0.21 ms
-
-### OnePlus One
-oneplus A0001 with Android 5.0.2
- 
-Library | Setup Kotlin | Setup Java | Inject Kotlin | Inject Java
---- | ---:| ---:| ---:| ---:
-**Koin** | 11.84 ms | 12.00 ms  | 0.27 ms | 0.30 ms
-**Kodein** | 22.52 ms | 23.05 ms  | 1.11 ms | 1.28 ms
-**Katana** | 1.87 ms | 1.58 ms  | 0.27 ms | 0.18 ms
-**Custom** | 0.43 ms | 0.35 ms  | 0.09 ms | 0.10 ms
-**Dagger** | 0.00 ms | 0.00 ms  | 0.04 ms | 0.04 ms
-
-### OnePlus 5
-OnePlus OnePlus5 with Android 8.1.0
- 
-Library | Setup Kotlin | Setup Java | Inject Kotlin | Inject Java
---- | ---:| ---:| ---:| ---:
-**Koin** | 2.27 ms | 2.46 ms  | 0.05 ms | 0.05 ms
-**Kodein** | 4.81 ms | 4.43 ms  | 0.09 ms | 0.08 ms
-**Katana** | 0.34 ms | 0.32 ms  | 0.04 ms | 0.04 ms
-**Custom** | 0.07 ms | 0.08 ms  | 0.02 ms | 0.03 ms
-**Dagger** | 0.00 ms | 0.00 ms  | 0.04 ms | 0.02 ms
-
-### Nexus 6
-google shamu with Android 7.1.1
- 
-Library | Setup Kotlin | Setup Java | Inject Kotlin | Inject Java
---- | ---:| ---:| ---:| ---:
-**Koin** | 19.80 ms | 20.43 ms  | 0.45 ms | 0.35 ms
-**Kodein** | 21.48 ms | 21.02 ms  | 0.74 ms | 0.62 ms
-**Katana** | 1.23 ms | 1.16 ms  | 0.31 ms | 0.27 ms
-**Custom** | 0.29 ms | 0.29 ms  | 0.20 ms | 0.31 ms
-**Dagger** | 0.03 ms | 0.03 ms  | 0.22 ms | 0.15 ms
+**Koin** | 0.443 ms | 0.451 ms  | 0.126 ms | 0.058 ms
+**Kodein** | 17.014 ms | 15.776 ms  | 0.015 ms | 0.014 ms
+**Katana** | 0.291 ms | 0.296 ms  | 0.115 ms | 0.055 ms
+**Custom** | 0.064 ms | 0.054 ms  | 0.042 ms | 0.032 ms
+**Dagger** | 0.004 ms | 0.005 ms  | 0.027 ms | 0.032 ms
+**DependencyProperty** | 0.003 ms | 0.003 ms  | 0.012 ms | 0.011 ms

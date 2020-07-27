@@ -46,4 +46,7 @@ dependencies {
 
     // Katana
     implementation 'org.rewedigital.katana:katana-android:1.13.2'
+
+    // DependencyProperty
+    implementation "com.github.wada811:DependencyProperty:3caa9ffde5"
 }
