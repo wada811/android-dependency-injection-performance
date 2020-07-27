@@ -59,10 +59,10 @@ class MainActivity : AppCompatActivity() {
         results.forEach { result ->
             table += row(
                 nameCell(result.injectorName),
-                timeCell(result[Variant.JAVA].startupTime.median()),
                 timeCell(result[Variant.KOTLIN].startupTime.median()),
-                timeCell(result[Variant.JAVA].injectionTime.median()),
-                timeCell(result[Variant.KOTLIN].injectionTime.median())
+                timeCell(result[Variant.JAVA].startupTime.median()),
+                timeCell(result[Variant.KOTLIN].injectionTime.median()),
+                timeCell(result[Variant.JAVA].injectionTime.median())
             )
         }
 
