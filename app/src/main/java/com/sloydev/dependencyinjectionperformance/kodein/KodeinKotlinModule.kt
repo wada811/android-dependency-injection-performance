@@ -7,7 +7,7 @@ import org.kodein.di.instance
 import org.kodein.di.provider
 import org.kodein.di.singleton
 
-val kodeinKotlinModule = DI.Module("fib") {
+val kodeinKotlinModule = DI.Module("kodeinKotlinModule") {
     KodeinKotlinModule.build(this)
 }
 
