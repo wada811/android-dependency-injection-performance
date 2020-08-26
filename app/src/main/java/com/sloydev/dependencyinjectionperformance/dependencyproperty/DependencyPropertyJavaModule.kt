@@ -3,7 +3,7 @@ package com.sloydev.dependencyinjectionperformance.dependencyproperty
 import com.sloydev.dependencyinjectionperformance.FibonacciJava
 import com.wada811.dependencyproperty.DependencyModule
 
-class JavaDependencyPropertyModule : DependencyModule {
+class DependencyPropertyJavaModule : DependencyModule {
     val fib1 by lazy { FibonacciJava.Fib1() }
     val fib2 by lazy { FibonacciJava.Fib2() }
     val fib3 get() = FibonacciJava.Fib3(fib2, fib1)

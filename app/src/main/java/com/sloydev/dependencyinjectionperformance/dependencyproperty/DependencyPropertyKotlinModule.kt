@@ -4,7 +4,7 @@ import com.sloydev.dependencyinjectionperformance.FibonacciJava
 import com.sloydev.dependencyinjectionperformance.FibonacciKotlin
 import com.wada811.dependencyproperty.DependencyModule
 
-class KotlinDependencyPropertyModule : DependencyModule {
+class DependencyPropertyKotlinModule : DependencyModule {
     val fib1 by lazy { FibonacciKotlin.Fib1() }
     val fib2 by lazy { FibonacciKotlin.Fib2() }
     val fib3 get() = FibonacciKotlin.Fib3(fib2, fib1)
