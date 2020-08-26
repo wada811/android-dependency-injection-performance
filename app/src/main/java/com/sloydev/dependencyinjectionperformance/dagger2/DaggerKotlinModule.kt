@@ -6,7 +6,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class KotlinDaggerModule {
+class DaggerKotlinModule {
     @Singleton
     @Provides
     fun provideFib1() = FibonacciKotlin.Fib1()
