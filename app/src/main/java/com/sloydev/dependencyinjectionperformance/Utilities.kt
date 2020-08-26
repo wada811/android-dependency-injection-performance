@@ -8,13 +8,17 @@ import kotlin.system.measureNanoTime
 typealias Milliseconds = Double
 
 data class LibraryResult(val injectorName: String, val results: Map<Variant, TestResult>) {
-    operator fun get(variant: Variant) = results[variant]!!
+    operator fun get(variant: Variant) = results.getValue(variant)
 }
 
 data class TestResult(
     val startupTime: List<Milliseconds>,
     val injectionTime: List<Milliseconds>
 )
+
+data class LibraryUiResult(val injectorName: String, val results: Map<Variant, List<Milliseconds>>) {
+    operator fun get(variant: Variant) = results.getValue(variant)
+}
 
 enum class Variant {
     KOTLIN, JAVA
