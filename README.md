@@ -27,11 +27,11 @@ Results can be quite different between different devices, so here are some resul
 ### Pixel 3
 google blueline with Android 10
 
-Library | Setup Kotlin | Setup Java | Inject Kotlin | Inject Java
---- | ---:| ---:| ---:| ---:
-**Koin** | 0.443 ms | 0.451 ms  | 0.126 ms | 0.058 ms
-**Kodein** | 17.014 ms | 15.776 ms  | 0.015 ms | 0.014 ms
-**Katana** | 0.291 ms | 0.296 ms  | 0.115 ms | 0.055 ms
-**Custom** | 0.064 ms | 0.054 ms  | 0.042 ms | 0.032 ms
-**Dagger** | 0.004 ms | 0.005 ms  | 0.027 ms | 0.032 ms
-**DependencyProperty** | 0.003 ms | 0.003 ms  | 0.012 ms | 0.011 ms
+Library | Setup | Inject | Inject(Fragment)
+--- | ---:| ---:| ---:
+**Koin** | 0.429 ms | 0.103 ms | 0.132 ms
+**Kodein** | 15.412 ms | 0.013 ms | 1.050 ms
+**Katana** | 0.296 ms | 0.108 ms | 0.083 ms
+**Custom** | 0.055 ms | 0.040 ms | 0.046 ms
+**Dagger** | 0.002 ms | 0.040 ms | 0.153 ms
+**DepPro** | 0.003 ms | 0.011 ms | 0.068 ms
