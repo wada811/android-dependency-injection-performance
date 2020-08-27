@@ -1,18 +1,24 @@
 package com.sloydev.dependencyinjectionperformance
 
 import com.sloydev.dependencyinjectionperformance.dagger2.createAppComponent
-import com.sloydev.dependencyinjectionperformance.dependencyproperty.DependencyPropertyJavaModule
-import com.sloydev.dependencyinjectionperformance.dependencyproperty.DependencyPropertyKotlinModule
+import com.sloydev.dependencyinjectionperformance.dependencyproperty.DependencyPropertyModule
+import com.sloydev.dependencyinjectionperformance.kodein.kodeinModule
 import com.wada811.dependencyproperty.DependencyContext
 import com.wada811.dependencyproperty.DependencyModules
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
+import org.kodein.di.DI
+import org.kodein.di.DIAware
 
-class App : DaggerApplication(), DependencyContext {
-    override val dependencyModules: DependencyModules by dependencyModules(DependencyPropertyJavaModule(), DependencyPropertyKotlinModule())
+class App : DaggerApplication(), DependencyContext, DIAware {
+    override val dependencyModules: DependencyModules by dependencyModules(DependencyPropertyModule())
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         val component = createAppComponent()
         component.inject(this)
         return component
+    }
+
+    override val di: DI by DI.lazy {
+        import(kodeinModule)
     }
 }

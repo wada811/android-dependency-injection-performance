@@ -44,46 +44,52 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     }
 
     private fun runTests() {
-        val libraries = Library.values()
-        val results = libraries.map { it.runTest() }
-        reportOnLogcat(results)
-        reportOnScreen(results)
-
-        libraries.forEach {
-            runTestOnFragment(it)
-        }
-    }
-
-    private fun reportOnLogcat(results: List<LibraryResult>) {
-        log("Done!\n")
-        log("\n")
-        log("${Build.BRAND} ${Build.DEVICE} with Android ${Build.VERSION.RELEASE}\n")
-        log("\n")
-        log("Library | Setup Kotlin | Setup Java | Inject Kotlin | Inject Java\n")
-        log("--- | ---:| ---:| ---:| ---:\n")
-        results.forEach {
-            log("**${it.injectorName}** | ${it[Variant.KOTLIN].startupTime.median().format()} | ${it[Variant.JAVA].startupTime.median().format()}  | ${it[Variant.KOTLIN].injectionTime.median().format()} | ${it[Variant.JAVA].injectionTime.median().format()}\n")
+        showDeviceInfo()
+        showInfoOnLogcat()
+        Library.values().forEachIndexed { index, library ->
+            val libraryResult = library.runTest()
+            runTestOnFragment(library) { libraryFragmentResult ->
+                reportOnLogcat(libraryResult, libraryFragmentResult)
+                reportOnScreen(libraryResult, libraryFragmentResult)
+                if (index == Library.values().lastIndex) {
+                    addSeparator()
+                }
+            }
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun reportOnScreen(results: List<LibraryResult>) {
+    private fun showDeviceInfo() {
         findViewById<TextView>(R.id.deviceInfo).text = """
                 ${Build.BRAND} · ${Build.DEVICE}
                 Android ${Build.VERSION.RELEASE} (sdk ${Build.VERSION.SDK_INT})
             """.trimIndent()
+    }
 
+    private fun showInfoOnLogcat() {
+        log("${Build.BRAND} ${Build.DEVICE} with Android ${Build.VERSION.RELEASE}\n")
+        log(" ")
+        log("Library | Setup | Inject | Inject(Fragment)\n")
+        log("--- | ---:| ---:| ---:\n")
+    }
+
+    private fun reportOnLogcat(libraryResult: LibraryResult<Library<*>>, libraryFragmentResult: LibraryFragmentResult<out Library<*>>) {
+        log("**${libraryResult.library.displayName}** | ${libraryResult.startupTime.median().format()} | ${libraryResult.injectionTime.median().format()} | ${libraryFragmentResult.injectionTime.median().format()}\n")
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun reportOnScreen(results: LibraryResult<Library<*>>, libraryFragmentResult: LibraryFragmentResult<out Library<*>>) {
         val table = findViewById<TableLayout>(R.id.table)
-        results.forEach { result ->
-            table += row(
-                nameCell(result.injectorName),
-                timeCell(result[Variant.KOTLIN].startupTime.median()),
-                timeCell(result[Variant.JAVA].startupTime.median()),
-                timeCell(result[Variant.KOTLIN].injectionTime.median()),
-                timeCell(result[Variant.JAVA].injectionTime.median())
-            )
-        }
+        table += row(
+            nameCell(results.library.displayName),
+            timeCell(results.startupTime.median()),
+            timeCell(results.injectionTime.median()),
+            timeCell(libraryFragmentResult.injectionTime.median())
+        )
+    }
 
+    private fun addSeparator() {
+        val table = findViewById<TableLayout>(R.id.table)
         table.addView(
             separator(),
             ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1.dp)
@@ -101,13 +107,6 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
         return TextView(this).apply {
             text = name
             setTypeface(null, Typeface.BOLD)
-        }
-    }
-
-    private fun textCell(text: String): TextView {
-        return TextView(this).also {
-            it.text = text
-            it.gravity = GravityCompat.END
         }
     }
 
@@ -136,8 +135,8 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     private fun <T : Fragment> runTestOnFragment(
         library: Library<T>,
         count: Int = 1,
-        injectionTimeJava: MutableList<Milliseconds> = mutableListOf(),
-        injectionTimeKotlin: MutableList<Milliseconds> = mutableListOf()
+        injectionTime: MutableList<Milliseconds> = mutableListOf(),
+        onComplete: (LibraryFragmentResult<Library<T>>) -> Unit
     ) {
         val fragment = library.fragment()
         supportFragmentManager.findFragmentByTag(fragment.javaClass.simpleName)?.let {
@@ -149,54 +148,13 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
             .add(library.fragment(), fragment.javaClass.simpleName)
             .commit()
         supportFragmentManager.clearFragmentResultListener(fragment.javaClass.simpleName)
-        supportFragmentManager.setFragmentResultListener(
-            fragment.javaClass.simpleName,
-            this,
-            { _, result ->
-                injectionTimeJava.add(result.getDouble(Variant.JAVA.name))
-                injectionTimeKotlin.add(result.getDouble(Variant.KOTLIN.name))
-                if (count < 100) {
-                    runTestOnFragment(library, count + 1, injectionTimeJava, injectionTimeKotlin)
-                } else {
-                    val uiResult = LibraryUiResult(
-                        library.displayName,
-                        mapOf(Variant.KOTLIN to injectionTimeKotlin, Variant.JAVA to injectionTimeJava)
-                    )
-                    reportUiResultOnLogcat(listOf(uiResult))
-                    reportUiResultOnScreen(listOf(uiResult))
-                }
+        supportFragmentManager.setFragmentResultListener(fragment.javaClass.simpleName, this) { _, result ->
+            injectionTime.add(result.getDouble("injectionTime"))
+            if (count < 100) {
+                runTestOnFragment(library, count + 1, injectionTime, onComplete)
+            } else {
+                onComplete(LibraryFragmentResult(library, injectionTime))
             }
-        )
-    }
-
-    private fun reportUiResultOnLogcat(results: List<LibraryUiResult>) {
-        log("Done!\n")
-        log("\n")
-        log("${Build.BRAND} ${Build.DEVICE} with Android ${Build.VERSION.RELEASE}\n")
-        log("\n")
-        log("Library | Inject Kotlin | Inject Java\n")
-        log("--- | ---:| ---:\n")
-        results.forEach {
-            log("**${it.injectorName}** | ${it[Variant.KOTLIN].median().format()} | ${it[Variant.JAVA].median().format()}\n")
         }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun reportUiResultOnScreen(results: List<LibraryUiResult>) {
-        val table = findViewById<TableLayout>(R.id.table)
-        results.forEach { result ->
-            table += row(
-                nameCell(result.injectorName),
-                textCell("inject in"),
-                textCell("Fragment"),
-                timeCell(result[Variant.KOTLIN].median()),
-                timeCell(result[Variant.JAVA].median())
-            )
-        }
-
-        table.addView(
-            separator(),
-            ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1.dp)
-        )
     }
 }

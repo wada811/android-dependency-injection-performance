@@ -6,8 +6,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class FragmentBindingModule {
 
-    @ContributesAndroidInjector(
-        modules = [DaggerJavaModule::class, DaggerKotlinModule::class]
-    )
+    @ContributesAndroidInjector(modules = [DaggerModule::class])
     abstract fun contributeDaggerFragment(): DaggerFragment
 }

@@ -1,29 +1,19 @@
 package com.sloydev.dependencyinjectionperformance
 
 import androidx.fragment.app.Fragment
-import com.sloydev.dependencyinjectionperformance.Variant.JAVA
-import com.sloydev.dependencyinjectionperformance.Variant.KOTLIN
 import com.sloydev.dependencyinjectionperformance.custom.CustomFragment
 import com.sloydev.dependencyinjectionperformance.custom.DIContainer
-import com.sloydev.dependencyinjectionperformance.custom.customJavaModule
-import com.sloydev.dependencyinjectionperformance.custom.customKotlinModule
+import com.sloydev.dependencyinjectionperformance.custom.customModule
+import com.sloydev.dependencyinjectionperformance.dagger2.DaggerComponent
 import com.sloydev.dependencyinjectionperformance.dagger2.DaggerFragment
-import com.sloydev.dependencyinjectionperformance.dagger2.DaggerJavaDaggerComponent
-import com.sloydev.dependencyinjectionperformance.dagger2.DaggerKotlinDaggerComponent
-import com.sloydev.dependencyinjectionperformance.dagger2.JavaDaggerComponent
-import com.sloydev.dependencyinjectionperformance.dagger2.KotlinDaggerComponent
 import com.sloydev.dependencyinjectionperformance.dependencyproperty.DependencyPropertyFragment
-import com.sloydev.dependencyinjectionperformance.dependencyproperty.DependencyPropertyJavaModule
-import com.sloydev.dependencyinjectionperformance.dependencyproperty.DependencyPropertyKotlinModule
+import com.sloydev.dependencyinjectionperformance.dependencyproperty.DependencyPropertyModule
 import com.sloydev.dependencyinjectionperformance.katana.KatanaFragment
-import com.sloydev.dependencyinjectionperformance.katana.katanaJavaModule
-import com.sloydev.dependencyinjectionperformance.katana.katanaKotlinModule
+import com.sloydev.dependencyinjectionperformance.katana.katanaModule
 import com.sloydev.dependencyinjectionperformance.kodein.KodeinFragment
-import com.sloydev.dependencyinjectionperformance.kodein.kodeinJavaModule
-import com.sloydev.dependencyinjectionperformance.kodein.kodeinKotlinModule
+import com.sloydev.dependencyinjectionperformance.kodein.kodeinModule
 import com.sloydev.dependencyinjectionperformance.koin.KoinFragment
-import com.sloydev.dependencyinjectionperformance.koin.koinJavaModule
-import com.sloydev.dependencyinjectionperformance.koin.koinKotlinModule
+import com.sloydev.dependencyinjectionperformance.koin.koinModule
 import org.kodein.di.DI
 import org.kodein.di.instance
 import org.koin.core.KoinComponent
@@ -37,46 +27,34 @@ import javax.inject.Inject
 
 sealed class Library<TFragment : Fragment>(val displayName: String) {
     object Koin : Library<KoinFragment>("Koin"), KoinComponent {
-        override fun setup(variant: Variant) {
-            when (variant) {
-                KOTLIN -> startKoin { modules(koinKotlinModule) }
-                JAVA -> startKoin { modules(koinJavaModule) }
-            }
+        override fun setup() {
+            startKoin { modules(koinModule) }
         }
 
-        override fun test(variant: Variant) {
-            when (variant) {
-                KOTLIN -> get<FibonacciKotlin.Fib8>()
-                JAVA -> get<FibonacciJava.Fib8>()
-            }
+        override fun test() {
+            get<Fibonacci.Fib8>()
         }
 
         override fun fragment(): KoinFragment = KoinFragment()
 
-        override fun teardown(variant: Variant) {
+        override fun teardown() {
             stopKoin()
         }
     }
 
     object Kodein : Library<KodeinFragment>("Kodein") {
         private lateinit var kodein: DI
-        override fun setup(variant: Variant) {
-            kodein = when (variant) {
-                KOTLIN -> DI { import(kodeinKotlinModule) }
-                JAVA -> DI { import(kodeinJavaModule) }
-            }
+        override fun setup() {
+            kodein = DI { import(kodeinModule) }
         }
 
-        override fun test(variant: Variant) {
-            when (variant) {
-                KOTLIN -> kodein.instance<FibonacciKotlin.Fib8>()
-                JAVA -> kodein.instance<FibonacciJava.Fib8>()
-            }
+        override fun test() {
+            kodein.instance<Fibonacci.Fib8>()
         }
 
         override fun fragment(): KodeinFragment = KodeinFragment()
 
-        override fun teardown(variant: Variant) {
+        override fun teardown() {
         }
 
     }
@@ -87,105 +65,73 @@ sealed class Library<TFragment : Fragment>(val displayName: String) {
         }
 
         private lateinit var component: Component
-        override fun setup(variant: Variant) {
-            component = when (variant) {
-                KOTLIN -> Component(listOf(katanaKotlinModule))
-                JAVA -> Component(listOf(katanaJavaModule))
-            }
+        override fun setup() {
+            component = Component(listOf(katanaModule))
         }
 
-        override fun test(variant: Variant) {
-            when (variant) {
-                KOTLIN -> component.injectNow<FibonacciKotlin.Fib8>()
-                JAVA -> component.injectNow<FibonacciJava.Fib8>()
-            }
+        override fun test() {
+            component.injectNow<Fibonacci.Fib8>()
         }
 
         override fun fragment(): KatanaFragment = KatanaFragment()
 
-        override fun teardown(variant: Variant) {
+        override fun teardown() {
         }
 
     }
 
     object Custom : Library<CustomFragment>("Custom") {
-        override fun setup(variant: Variant) {
-            when (variant) {
-                KOTLIN -> DIContainer.loadModule(customKotlinModule)
-                JAVA -> DIContainer.loadModule(customJavaModule)
-            }
+        override fun setup() {
+            DIContainer.loadModule(customModule)
         }
 
-        override fun test(variant: Variant) {
-            when (variant) {
-                KOTLIN -> DIContainer.get<FibonacciKotlin.Fib8>()
-                JAVA -> DIContainer.get<FibonacciJava.Fib8>()
-            }
+        override fun test() {
+            DIContainer.get<Fibonacci.Fib8>()
         }
 
         override fun fragment(): CustomFragment = CustomFragment()
 
-        override fun teardown(variant: Variant) {
+        override fun teardown() {
             DIContainer.unloadModules()
         }
     }
 
     object Dagger : Library<DaggerFragment>("Dagger") {
-        private val kotlinDaggerTest = KotlinDaggerTest()
-        private val javaDaggerTest = JavaDaggerTest()
+        private val daggerTest = DaggerTest()
 
-        class KotlinDaggerTest {
+        class DaggerTest {
             @Inject
-            lateinit var daggerFib8: FibonacciKotlin.Fib8
+            lateinit var daggerFib8: Fibonacci.Fib8
         }
 
-        class JavaDaggerTest {
-            @Inject
-            lateinit var daggerFib8: FibonacciJava.Fib8
+        private lateinit var component: DaggerComponent
+        override fun setup() {
+            component = DaggerComponent.create()
         }
 
-        private lateinit var kotlinComponent: KotlinDaggerComponent
-        private lateinit var javaComponent: JavaDaggerComponent
-        override fun setup(variant: Variant) {
-            when (variant) {
-                KOTLIN -> kotlinComponent = KotlinDaggerComponent.create()
-                JAVA -> javaComponent = JavaDaggerComponent.create()
-            }
-        }
-
-        override fun test(variant: Variant) {
-            when (variant) {
-                KOTLIN -> kotlinComponent.inject(kotlinDaggerTest).also { kotlinDaggerTest.daggerFib8 }
-                JAVA -> javaComponent.inject(javaDaggerTest).also { javaDaggerTest.daggerFib8 }
-            }
+        override fun test() {
+            component.inject(daggerTest).also { daggerTest.daggerFib8 }
         }
 
         override fun fragment(): DaggerFragment = DaggerFragment()
 
-        override fun teardown(variant: Variant) {
+        override fun teardown() {
         }
     }
 
     object DependencyProperty : Library<DependencyPropertyFragment>("DepPro") {
-        private lateinit var kotlinModule: DependencyPropertyKotlinModule
-        private lateinit var javaModule: DependencyPropertyJavaModule
-        override fun setup(variant: Variant) {
-            when (variant) {
-                KOTLIN -> kotlinModule = DependencyPropertyKotlinModule()
-                JAVA -> javaModule = DependencyPropertyJavaModule()
-            }
+        private lateinit var module: DependencyPropertyModule
+        override fun setup() {
+            module = DependencyPropertyModule()
         }
 
-        override fun test(variant: Variant) {
-            when (variant) {
-                KOTLIN -> kotlinModule.fib8
-                JAVA -> javaModule.fib8
-            }
+        override fun test() {
+            module.fib8
         }
 
         override fun fragment(): DependencyPropertyFragment = DependencyPropertyFragment()
 
-        override fun teardown(variant: Variant) {
+        override fun teardown() {
         }
     }
 
@@ -202,23 +148,18 @@ sealed class Library<TFragment : Fragment>(val displayName: String) {
         )
     }
 
-    abstract fun setup(variant: Variant)
-    protected abstract fun test(variant: Variant)
+    abstract fun setup()
+    protected abstract fun test()
     abstract fun fragment(): TFragment
-    protected abstract fun teardown(variant: Variant)
+    protected abstract fun teardown()
 
-    fun runTest(): LibraryResult {
-        log("Running $displayName...")
-        return LibraryResult(displayName, Variant.values().map { it to runTest(it) }.toMap())
-    }
-
-    private fun runTest(variant: Variant): TestResult {
+    fun runTest(): LibraryResult<Library<*>> {
         val rounds = 100
-        val startup = (1..rounds).map { measureTime { setup(variant) }.also { teardown(variant) } }
-        setup(variant)
+        val startup = (1..rounds).map { measureTime { setup() }.also { teardown() } }
+        setup()
 
-        val testDurations = (1..rounds).map { measureTime { test(variant) } }
-        teardown(variant)
-        return TestResult(startup, testDurations)
+        val testDurations = (1..rounds).map { measureTime { test() } }
+        teardown()
+        return LibraryResult(this, startup, testDurations)
     }
 }

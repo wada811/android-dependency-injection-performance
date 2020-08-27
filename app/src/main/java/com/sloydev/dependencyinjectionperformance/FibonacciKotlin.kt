@@ -1,6 +1,6 @@
 package com.sloydev.dependencyinjectionperformance
 
-class FibonacciKotlin {
+class Fibonacci {
     class Fib1
     class Fib2
     class Fib3(val fibM1: Fib2, val fibM2: Fib1)

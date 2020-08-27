@@ -2,27 +2,23 @@ package com.sloydev.dependencyinjectionperformance
 
 import android.content.res.Resources
 import android.util.Log
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import java.util.*
 import kotlin.system.measureNanoTime
 
 typealias Milliseconds = Double
 
-data class LibraryResult(val injectorName: String, val results: Map<Variant, TestResult>) {
-    operator fun get(variant: Variant) = results.getValue(variant)
-}
-
-data class TestResult(
+data class LibraryResult<TLibrary>(
+    val library: TLibrary,
     val startupTime: List<Milliseconds>,
     val injectionTime: List<Milliseconds>
 )
 
-data class LibraryUiResult(val injectorName: String, val results: Map<Variant, List<Milliseconds>>) {
-    operator fun get(variant: Variant) = results.getValue(variant)
-}
-
-enum class Variant {
-    KOTLIN, JAVA
-}
+data class LibraryFragmentResult<TLibrary>(
+    val library: TLibrary,
+    val injectionTime: List<Milliseconds>
+)
 
 fun Milliseconds?.format() = String.format(Locale.ENGLISH, "%.3f ms", this)
 
@@ -37,3 +33,10 @@ fun log(msg: String) {
 
 val Int.dp: Int
     get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+fun Fragment.setInjectionTimeResult(injectionTime: Milliseconds) {
+    parentFragmentManager.setFragmentResult(
+        this.javaClass.simpleName,
+        bundleOf("injectionTime" to injectionTime)
+    )
+}
