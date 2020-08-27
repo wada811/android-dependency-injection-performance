@@ -7,11 +7,11 @@ import javax.inject.Singleton
 
 @Module
 class DaggerJavaModule {
-    @Singleton
+//    @Singleton
     @Provides
     fun provideFib1() = FibonacciJava.Fib1()
 
-    @Singleton
+//    @Singleton
     @Provides
     fun provideFib2() = FibonacciJava.Fib2()
 

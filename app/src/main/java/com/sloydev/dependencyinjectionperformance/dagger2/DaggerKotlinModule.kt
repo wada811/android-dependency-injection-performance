@@ -7,11 +7,11 @@ import javax.inject.Singleton
 
 @Module
 class DaggerKotlinModule {
-    @Singleton
+//    @Singleton
     @Provides
     fun provideFib1() = FibonacciKotlin.Fib1()
 
-    @Singleton
+//    @Singleton
     @Provides
     fun provideFib2() = FibonacciKotlin.Fib2()
 

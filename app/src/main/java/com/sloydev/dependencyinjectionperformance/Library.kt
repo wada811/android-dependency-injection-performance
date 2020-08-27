@@ -148,8 +148,8 @@ sealed class Library<TFragment : Fragment>(val displayName: String) {
         private lateinit var javaComponent: JavaDaggerComponent
         override fun setup(variant: Variant) {
             when (variant) {
-                KOTLIN -> kotlinComponent = DaggerKotlinDaggerComponent.create()
-                JAVA -> javaComponent = DaggerJavaDaggerComponent.create()
+                KOTLIN -> kotlinComponent = KotlinDaggerComponent.create()
+                JAVA -> javaComponent = JavaDaggerComponent.create()
             }
         }
 
