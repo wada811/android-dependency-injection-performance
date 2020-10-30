@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity(), HasAndroidInjector {
     private fun <T : Fragment> runTestOnFragment(
         library: Library<T>,
         count: Int = 1,
-        injectionTime: MutableList<Milliseconds> = mutableListOf(),
+        injectionTime: MutableList<Microseconds> = mutableListOf(),
         onComplete: (LibraryFragmentResult<Library<T>>) -> Unit
     ) {
         val fragment = library.fragment()

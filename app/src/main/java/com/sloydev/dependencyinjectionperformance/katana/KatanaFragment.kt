@@ -3,7 +3,7 @@ package com.sloydev.dependencyinjectionperformance.katana
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.sloydev.dependencyinjectionperformance.Fibonacci
-import com.sloydev.dependencyinjectionperformance.Milliseconds
+import com.sloydev.dependencyinjectionperformance.Microseconds
 import com.sloydev.dependencyinjectionperformance.measureTime
 import com.sloydev.dependencyinjectionperformance.setInjectionTimeResult
 import org.rewedigital.katana.Component
@@ -16,7 +16,7 @@ class KatanaFragment : Fragment(), KatanaTrait {
     private val delegate: KatanaFragmentDelegate<KatanaFragment>
     override lateinit var component: Component
     private lateinit var fib8: Fibonacci.Fib8
-    private var injectionTime: Milliseconds = 0.0
+    private var injectionTime: Microseconds = 0.0
 
     init {
         delegate = fragmentDelegate { _, _ ->

@@ -3,7 +3,7 @@ package com.sloydev.dependencyinjectionperformance.dagger2
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.sloydev.dependencyinjectionperformance.Fibonacci
-import com.sloydev.dependencyinjectionperformance.Milliseconds
+import com.sloydev.dependencyinjectionperformance.Microseconds
 import com.sloydev.dependencyinjectionperformance.measureTime
 import com.sloydev.dependencyinjectionperformance.setInjectionTimeResult
 import dagger.android.AndroidInjector
@@ -25,7 +25,7 @@ class DaggerFragment : Fragment(), HasAndroidInjector {
 
     @Inject
     lateinit var fib8: Fibonacci.Fib8
-    private var injectionTime: Milliseconds = 0.0
+    private var injectionTime: Microseconds = 0.0
 
     override fun onResume() {
         super.onResume()

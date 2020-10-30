@@ -7,24 +7,24 @@ import androidx.fragment.app.Fragment
 import java.util.*
 import kotlin.system.measureNanoTime
 
-typealias Milliseconds = Double
+typealias Microseconds = Double
 
 data class LibraryResult<TLibrary>(
     val library: TLibrary,
-    val startupTime: List<Milliseconds>,
-    val injectionTime: List<Milliseconds>
+    val startupTime: List<Microseconds>,
+    val injectionTime: List<Microseconds>
 )
 
 data class LibraryFragmentResult<TLibrary>(
     val library: TLibrary,
-    val injectionTime: List<Milliseconds>
+    val injectionTime: List<Microseconds>
 )
 
-fun Milliseconds?.format() = String.format(Locale.ENGLISH, "%.3f ms", this)
+fun Microseconds?.format() = String.format(Locale.ENGLISH, "%.3f µs", this)
 
-fun measureTime(block: () -> Unit): Milliseconds = measureNanoTime(block) / 1000000.0
+fun measureTime(block: () -> Unit): Microseconds = measureNanoTime(block) / 1000.0
 
-fun List<Milliseconds>.median() = sorted().let { (it[it.size / 2] + it[(it.size - 1) / 2]) / 2 }
+fun List<Microseconds>.median() = sorted().let { (it[it.size / 2] + it[(it.size - 1) / 2]) / 2 }
 
 
 fun log(msg: String) {
@@ -34,7 +34,7 @@ fun log(msg: String) {
 val Int.dp: Int
     get() = (this * Resources.getSystem().displayMetrics.density).toInt()
 
-fun Fragment.setInjectionTimeResult(injectionTime: Milliseconds) {
+fun Fragment.setInjectionTimeResult(injectionTime: Microseconds) {
     parentFragmentManager.setFragmentResult(
         this.javaClass.simpleName,
         bundleOf("injectionTime" to injectionTime)
