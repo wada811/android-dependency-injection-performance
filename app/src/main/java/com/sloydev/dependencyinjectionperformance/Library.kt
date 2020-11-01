@@ -8,8 +8,6 @@ import com.sloydev.dependencyinjectionperformance.dagger2.DaggerComponent
 import com.sloydev.dependencyinjectionperformance.dagger2.DaggerFragment
 import com.sloydev.dependencyinjectionperformance.dependencyproperty.DependencyPropertyFragment
 import com.sloydev.dependencyinjectionperformance.dependencyproperty.DependencyPropertyModule
-import com.sloydev.dependencyinjectionperformance.katana.KatanaFragment
-import com.sloydev.dependencyinjectionperformance.katana.katanaModule
 import com.sloydev.dependencyinjectionperformance.kodein.KodeinFragment
 import com.sloydev.dependencyinjectionperformance.kodein.kodeinModule
 import com.sloydev.dependencyinjectionperformance.koin.KoinFragment
@@ -20,9 +18,6 @@ import org.koin.core.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.core.get
-import org.rewedigital.katana.Component
-import org.rewedigital.katana.android.environment.AndroidEnvironmentContext
-import org.rewedigital.katana.android.environment.AndroidEnvironmentContext.Profile.SPEED
 import javax.inject.Inject
 
 sealed class Library<TFragment : Fragment>(val displayName: String) {
@@ -53,27 +48,6 @@ sealed class Library<TFragment : Fragment>(val displayName: String) {
         }
 
         override fun fragment(): KodeinFragment = KodeinFragment()
-
-        override fun teardown() {
-        }
-
-    }
-
-    object Katana : Library<KatanaFragment>("Katana") {
-        init {
-            org.rewedigital.katana.Katana.environmentContext = AndroidEnvironmentContext(profile = SPEED)
-        }
-
-        private lateinit var component: Component
-        override fun setup() {
-            component = Component(listOf(katanaModule))
-        }
-
-        override fun test() {
-            component.injectNow<Fibonacci.Fib8>()
-        }
-
-        override fun fragment(): KatanaFragment = KatanaFragment()
 
         override fun teardown() {
         }
@@ -141,7 +115,6 @@ sealed class Library<TFragment : Fragment>(val displayName: String) {
         fun values() = listOf<Library<*>>(
             Koin,
             Kodein,
-            Katana,
             Custom,
             Dagger,
             DependencyProperty

@@ -50,9 +50,6 @@ dependencies {
     implementation 'com.google.dagger:dagger-android-support:2.29.1'
     kapt 'com.google.dagger:dagger-android-processor:2.29.1'
 
-    // Katana - https://github.com/rewe-digital/katana/
-    implementation 'org.rewedigital.katana:katana-android:1.14.0'
-
     // DependencyProperty - https://github.com/wada811/DependencyProperty
     implementation "com.github.wada811:DependencyProperty:1.1.2"
 }
