@@ -1,14 +1,15 @@
 package com.sloydev.dependencyinjectionperformance.dagger2
 
-import com.sloydev.dependencyinjectionperformance.InjectionTest
+import com.sloydev.dependencyinjectionperformance.Library.Dagger.DaggerTest
 import dagger.Component
+import javax.inject.Singleton
 
-@Component(modules = [KotlinDaggerModule::class])
-interface KotlinDaggerComponent {
-    fun inject(injectionTest: InjectionTest.KotlinDaggerTest)
-}
+@Singleton
+@Component(modules = [DaggerModule::class])
+interface DaggerComponent {
+    fun inject(injectionTest: DaggerTest)
 
-@Component(modules = [JavaDaggerModule::class])
-interface JavaDaggerComponent {
-    fun inject(injectionTest: InjectionTest.JavaDaggerTest)
+    companion object {
+        fun create(): DaggerComponent = DaggerDaggerComponent.create()
+    }
 }

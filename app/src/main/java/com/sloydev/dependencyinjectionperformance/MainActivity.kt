@@ -6,23 +6,37 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.plusAssign
 import androidx.core.view.updatePadding
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import androidx.fragment.app.Fragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), HasAndroidInjector {
+
+    @Inject
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
+
+    override fun androidInjector(): AndroidInjector<Any> = androidInjector
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(findViewById(R.id.toolbar))
 
-        fab.setOnClickListener {
+        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             runTests()
         }
 
@@ -30,40 +44,52 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun runTests() {
-        val results = InjectionTest().runTests()
-        reportOnLogcat(results)
-        reportOnScreen(results)
-    }
-
-    private fun reportOnLogcat(results: List<LibraryResult>) {
-        log("Done!\n")
-        log("\n")
-        log("${Build.BRAND} ${Build.DEVICE} with Android ${Build.VERSION.RELEASE}\n")
-        log("\n")
-        log("Library | Setup Kotlin | Setup Java | Inject Kotlin | Inject Java\n")
-        log("--- | ---:| ---:| ---:| ---:\n")
-        results.forEach {
-            log("**${it.injectorName}** | ${it[Variant.KOTLIN].startupTime.median().format()} | ${it[Variant.JAVA].startupTime.median().format()}  | ${it[Variant.KOTLIN].injectionTime.median().format()} | ${it[Variant.JAVA].injectionTime.median().format()}\n")
+        showDeviceInfo()
+        showInfoOnLogcat()
+        Library.values().forEachIndexed { index, library ->
+            val libraryResult = library.runTest()
+            runTestOnFragment(library) { libraryFragmentResult ->
+                reportOnLogcat(libraryResult, libraryFragmentResult)
+                reportOnScreen(libraryResult, libraryFragmentResult)
+                if (index == Library.values().lastIndex) {
+                    addSeparator()
+                }
+            }
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun reportOnScreen(results: List<LibraryResult>) {
-        deviceInfo.text = """
+    private fun showDeviceInfo() {
+        findViewById<TextView>(R.id.deviceInfo).text = """
                 ${Build.BRAND} · ${Build.DEVICE}
                 Android ${Build.VERSION.RELEASE} (sdk ${Build.VERSION.SDK_INT})
             """.trimIndent()
+    }
 
-        results.forEach { result ->
-            table += row(
-                nameCell(result.injectorName),
-                timeCell(result[Variant.JAVA].startupTime.median()),
-                timeCell(result[Variant.KOTLIN].startupTime.median()),
-                timeCell(result[Variant.JAVA].injectionTime.median()),
-                timeCell(result[Variant.KOTLIN].injectionTime.median())
-            )
-        }
+    private fun showInfoOnLogcat() {
+        log("${Build.BRAND} ${Build.DEVICE} with Android ${Build.VERSION.RELEASE}\n")
+        log(" ")
+        log("Library | Setup | Inject | Inject(Fragment)\n")
+        log("--- | ---:| ---:| ---:\n")
+    }
 
+    private fun reportOnLogcat(libraryResult: LibraryResult<Library<*>>, libraryFragmentResult: LibraryFragmentResult<out Library<*>>) {
+        log("**${libraryResult.library.displayName}** | ${libraryResult.startupTime.median().format()} | ${libraryResult.injectionTime.median().format()} | ${libraryFragmentResult.injectionTime.median().format()}\n")
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun reportOnScreen(results: LibraryResult<Library<*>>, libraryFragmentResult: LibraryFragmentResult<out Library<*>>) {
+        val table = findViewById<TableLayout>(R.id.table)
+        table += row(
+            nameCell(results.library.displayName),
+            timeCell(results.startupTime.median()),
+            timeCell(results.injectionTime.median()),
+            timeCell(libraryFragmentResult.injectionTime.median())
+        )
+    }
+
+    private fun addSeparator() {
+        val table = findViewById<TableLayout>(R.id.table)
         table.addView(
             separator(),
             ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1.dp)
@@ -98,7 +124,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun separator(): View {
         return View(this).apply {
-            setBackgroundColor(resources.getColor(R.color.colorAccent))
+            setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.colorAccent))
             updatePadding(
                 top = 4.dp,
                 bottom = 4.dp
@@ -106,4 +132,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun <T : Fragment> runTestOnFragment(
+        library: Library<T>,
+        count: Int = 1,
+        injectionTime: MutableList<Microseconds> = mutableListOf(),
+        onComplete: (LibraryFragmentResult<Library<T>>) -> Unit
+    ) {
+        val fragment = library.fragment()
+        supportFragmentManager.findFragmentByTag(fragment.javaClass.simpleName)?.let {
+            supportFragmentManager.beginTransaction()
+                .remove(it)
+                .commit()
+        }
+        supportFragmentManager.beginTransaction()
+            .add(library.fragment(), fragment.javaClass.simpleName)
+            .commit()
+        supportFragmentManager.clearFragmentResultListener(fragment.javaClass.simpleName)
+        supportFragmentManager.setFragmentResultListener(fragment.javaClass.simpleName, this) { _, result ->
+            injectionTime.add(result.getDouble("injectionTime"))
+            if (count < 100) {
+                runTestOnFragment(library, count + 1, injectionTime, onComplete)
+            } else {
+                onComplete(LibraryFragmentResult(library, injectionTime))
+            }
+        }
+    }
 }

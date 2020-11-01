@@ -64,6 +64,7 @@ object DIContainer {
 
     inline fun <reified T : Any> inject(name: String? = null) = inject(T::class.java, name)
 
+    @Suppress("UNCHECKED_CAST")
     @JvmStatic
     @JvmOverloads
     fun <T : Any> get(clazz: Class<T>, name: String? = null): T {
